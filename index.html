@@ -1228,5 +1228,366 @@ X2('ความโปร่งใสภาครัฐ','🔎','งบออน
 X2('ทหารเกณฑ์และกำลังพลสำรอง','🎖️','กำลังพลและสวัสดิการ','cn:ทหารเกณฑ์:50:-.002;rz:กำลังพลสำรอง:40:-.003','cn>fr*.0004@45,rz>fr*.0003@35','เพิ่มการเกณฑ์|10|cn+15,$ap-2;ฝึกกำลังพลสำรอง|15|rz+20;ปรับปรุงสวัสดิการทหาร|15|cn+8,$fr+1');
 X2('อุตสาหกรรมป้องกันประเทศ','🛡️','ผลิตและส่งออกยุทโธปกรณ์','dm:อุตสาหกรรมป้องกันประเทศ:25:-.003;ex:ส่งออกยุทโธปกรณ์:20:-.003','dm>fr*.0004@20,ex>cash*.004@15','โรงงานยุทโธปกรณ์|28|dm+20;เจรจาส่งออก|20|ex+20;ถ่ายทอดเทคโนโลยี|18|dm+10,$G+1');
 X2('ภูมิสารสนเทศและดาวเทียม','🛰️','แผนที่แห่งชาติและดาวเทียมสำรวจ','gi:ข้อมูลภูมิสารสนเทศ:35:-.003;sa:ดาวเทียมสำรวจ:20:-.002','gi>G*.0003@30,sa>sec*.0003@15','ระบบแผนที่แห่งชาติ|15|gi+20;ดาวเทียมสำรวจ|28|sa+20;ระบบเตือนภัยอวกาศ|12|sa+8,$ap+1');
+
+/* ===== ระบบใหม่ ===== */
+const Q=(n,ic,ms,fx,ac)=>X2(n,ic,'บริหารตัวชี้วัดให้สมดุลเพื่อผลระยะยาว',ms,fx,ac);
+Q('ฝ่ายค้านและอภิปราย','🗣️','op:คะแนนฝ่ายค้าน:35:.004:b;mo:ม็อบชุมนุม:20:.005:b','op>pt*-.0006@40,mo>ap*-.0005@35','ชี้แจงในสภา|8|op-15;เจรจาแกนนำม็อบ|12|mo-20;ผ่อนปรนนโยบาย|15|op-10,mo-10,$ap-1');
+Q('ค่าครองชีพและหนี้ครัวเรือน','🛒','pr:ราคาสินค้า:40:.004:b;db:หนี้ครัวเรือน:40:.003:b','pr>ap*-.0006@45,db>G*-.0004@45','ตรึงราคาสินค้า|20|pr-20;แจกเงินช่วยเหลือ|30|pr-8,db-10,$ap+3;พักหนี้เกษตรกร|18|db-20');
+Q('ตลาดหุ้นและค่าเงินบาท','📈','sx:ดัชนี SET:50:-.003;fw:ค่าเงินบาทเสถียร:50:-.003','sx>G*.0004@45,fw>cash*.004@40','กองทุนพยุงหุ้น|25|sx+20;แทรกแซงค่าเงิน|20|fw+20;ดึงดูดนักลงทุน BOI|15|sx+8,$G+1');
+Q('โรคระบาด','🦠','vi:การระบาด:15:.006:b;vc:วัคซีนครอบคลุม:30:-.003','vi>ap*-.0008@30,vc>ap*.0004@40','จัดหาวัคซีน|22|vc+20,vi-6;ล็อกดาวน์พื้นที่|15|vi-25,$G-2;ตรวจเชิงรุก|12|vi-12');
+Q('อาชญากรรมข้ามชาติ','🚔','dg:ยาเสพติด:35:.004:b;cc:แก๊งคอลเซ็นเตอร์:35:.004:b','dg>sec*-.0005@35,cc>ap*-.0004@35','ปราบยาเสพติด|18|dg-20;ทลายคอลเซ็นเตอร์|20|cc-20,$ap+1;ร่วมตำรวจสากล|12|dg-8,cc-8');
+Q('ซอฟต์พาวเวอร์','🎬','sp:ซอฟต์พาวเวอร์:30:-.003;xc:รายได้ส่งออกวัฒนธรรม:25:-.003','sp>G*.0004@30,xc>cash*.004@25','ส่งเสริมหนัง/ซีรีส์|18|sp+18;มวยไทยและอาหารไทย|15|sp+12,xc+8;เทศกาลนานาชาติ|20|sp+10,xc+15,$ap+1');
+Q('ความภักดีกองทัพ','🎖️','ml:ความภักดีกองทัพ:60:-.004;cp:ความเสี่ยงรัฐประหาร:10:.003:b','ml>fr*.0004@45,cp>pt*-.001@20','ปรับเงินเดือนทหาร|25|ml+20,cp-10;โยกย้ายนายพล|12|ml+8,cp-8,$pt-2;เยี่ยมกำลังพล|8|ml+10');
+Q('ภัยแล้งและน้ำประปา','🏜️','dr2:ภัยแล้ง:20:.004:b;wt:น้ำประปา:45:-.003','dr2>G*-.0006@30,wt>ap*.0004@40','ฝนหลวง|15|dr2-15;ขยายประปา|20|wt+20;ขุดบ่อบาดาล|10|dr2-8,wt+6');
+Q('ตลาดแรงงานและค่าแรง','👷','ue:ว่างงาน:30:.003:b;mw:ค่าแรงเหมาะสม:45:-.003','ue>G*-.0005@30,mw>ap*.0005@40','ปรับค่าแรงขั้นต่ำ|20|mw+20,ue+5;จัดหางาน|15|ue-15;ประกันการว่างงาน|18|ue-8,$ap+1');
+Q('SMEs และสตาร์ทอัพ','🚀','sm:สินเชื่อ SME:35:-.003;st:ระบบสตาร์ทอัพ:25:-.003','sm>G*.0004@35,st>G*.0004@25','กองทุน SME|20|sm+20;บ่มเพาะสตาร์ทอัพ|18|st+18;ลดภาษีเริ่มธุรกิจ|12|sm+8,st+8,$cash-1');
+Q('ป่าไม้และไฟป่า','🔥','ff:ความเสี่ยงไฟป่า:25:.004:b;fo:พื้นที่สีเขียว:50:-.002','ff>ap*-.0004@35,fo>G*.0003@40','ชุดดับไฟป่า|15|ff-20;ปลูกป่า|20|fo+15,ff-5;ห้ามเผาเข้มงวด|8|ff-10,$ap-1');
+Q('ขยะและมลพิษ','♻️','ws:ขยะสะสม:40:.004:b;rc:รีไซเคิล:30:-.003','ws>ap*-.0004@45,rc>G*.0003@30','โรงไฟฟ้าขยะ|22|ws-20;ส่งเสริมรีไซเคิล|15|rc+18,ws-6;ห้ามพลาสติกครั้งเดียว|8|ws-10,$ap-1');
+Q('สนามบินและท่าเรือ','✈️','ap2:ขีดความสามารถสนามบิน:40:-.003;pt2:ท่าเรือน้ำลึก:35:-.003','ap2>G*.0004@40,pt2>cash*.004@30','ขยายสนามบิน|28|ap2+20;ท่าเรือน้ำลึก|30|pt2+20;เขตปลอดภาษี|15|pt2+8,ap2+8');
+Q('สื่อและข่าวปลอม','📡','fk:ข่าวปลอม:35:.005:b;tm:ความเชื่อมั่นสื่อ:50:-.003','fk>ap*-.0005@40,tm>pt*.0004@40','ศูนย์ตรวจข่าวปลอม|15|fk-20;แถลงข่าวโปร่งใส|8|tm+15;อบรมรู้เท่าทันสื่อ|12|fk-8,tm+6');
+Q('สิทธิมนุษยชนและยุติธรรม','⚖️','hr:สิทธิมนุษยชน:50:-.003;cj:ความเชื่อมั่นศาล:50:-.003','hr>ap*.0004@45,cj>cor*-.0004@45','ปฏิรูปเรือนจำ|18|hr+15;ให้ความช่วยเหลือทางกฎหมาย|12|cj+15;ตั้งคณะกรรมการอิสระ|20|hr+8,cj+8,$cor-1');
+Q('ที่ดินทำกินและเกษตรกร','🌾','ld:ที่ดินทำกิน:40:-.003;fd:หนี้เกษตรกร:45:.003:b','ld>G*.0004@40,fd>ap*-.0005@45','แจกโฉนดที่ดิน|18|ld+20;ปรับโครงสร้างหนี้|20|fd-20;ประกันราคาผลผลิต|15|fd-8,$ap+1');
+Q('สวัสดิการเด็กและครอบครัว','👶','cw:เงินอุดหนุนเด็กเล็ก:40:-.003;dc:ศูนย์เด็กเล็ก:35:-.003','cw>ap*.0005@35,dc>G*.0003@35','เพิ่มเงินอุดหนุนเด็ก|20|cw+20,$ap+1;สร้างศูนย์เด็กเล็ก|22|dc+20;ลาคลอดยืดหยุ่น|10|cw+6,dc+6');
+
+/* ===== แผนที่: animation ===== */
+(function(){
+const st=document.createElement('style');st.textContent=`.rvf{stroke-dasharray:7 6;animation:rvf 1.4s linear infinite}@keyframes rvf{to{stroke-dashoffset:-26}}
+.wvs{animation:wvs 6s ease-in-out infinite alternate}@keyframes wvs{to{transform:translateX(-14px)}}
+.cld{animation:cld 60s linear infinite}@keyframes cld{from{transform:translateX(-140px)}to{transform:translateX(560px)}}
+.rn{stroke:#9fd4ff;stroke-width:1;animation:rn .6s linear infinite}@keyframes rn{from{transform:translateY(-30px);opacity:.8}to{transform:translateY(40px);opacity:0}}
+.emy{animation:emy 2.4s ease-in-out infinite}@keyframes emy{50%{opacity:.6}}
+.lnd{filter:drop-shadow(0 0 5px #3ddc9755)}.ship{font-size:12px}`;document.head.appendChild(st);
+const _bm=buildMap;buildMap=function(){_bm();const m=$('map');
+ let w='';for(let i=0;i<14;i++)w+=`<path class="wvs" d="M${(i%5)*90-20},${i*56+20} q15,-6 30,0 t30,0 t30,0 t30,0 t30,0 t30,0" fill="none" stroke="#1e4a6b" stroke-width="1.2" opacity=".55" style="animation-delay:-${i*.7}s"/>`;
+ m.insertAdjacentHTML('afterbegin','<g style="pointer-events:none">'+w+'</g>');
+ const ps=m.querySelectorAll('polygon');if(ps[0])ps[0].classList.add('emy');if(ps[1])ps[1].classList.add('lnd');
+ m.querySelectorAll('polyline[stroke="#38bdf8"]').forEach(r=>r.classList.add('rvf'));
+ let c='';[[40,120],[220,300],[110,520],[300,60],[60,690]].forEach((p,i)=>c+=`<g class="cld" style="animation-delay:-${i*12}s;pointer-events:none"><ellipse cx="${p[0]}" cy="${p[1]}" rx="34" ry="11" fill="#fff" opacity=".13"/><ellipse cx="${p[0]+18}" cy="${p[1]-7}" rx="22" ry="9" fill="#fff" opacity=".13"/></g>`);
+ let r='';for(let i=0;i<40;i++){const x=(i*37)%440,y=(i*91)%700;r+=`<line class="rn" x1="${x}" y1="${y}" x2="${x-3}" y2="${y+9}" style="animation-delay:-${(i%9)*.07}s"/>`}
+ const sh=(a,b,d,e,ic,t)=>`<text class="ship" font-size="12">${ic}<animateMotion dur="${t}s" repeatCount="indefinite" path="M${X(a)},${Y(b)} L${X(d)},${Y(e)} L${X(a)},${Y(b)}"/></text>`;
+ m.insertAdjacentHTML('beforeend',`<g id="fxw" style="pointer-events:none">${c}<g id="rnl" opacity="0">${r}</g>${sh(100.5,13.75,103,8,'🚢',26)}${sh(100.5,13.75,98.2,7.9,'🚢',30)}${sh(100.7,13.7,99.8,18.7,'✈️',14)}${sh(100.7,13.7,98.9,8.1,'✈️',18)}<rect id="ngt" width="450" height="760" fill="#020617" opacity="0"/></g>`)};
+setInterval(()=>{if(typeof S=='undefined'||!S)return;const r=$('rnl'),n=$('ngt'),e=document.querySelector('.emy');
+ if(r)r.setAttribute('opacity',S.wx>=3?(S.wx==4?.9:.5):0);
+ if(n){const t=(S.t||0)%60/60;n.setAttribute('opacity',(.32*(1-Math.cos(t*6.283))/2).toFixed(2))}
+ if(e&&S.en)e.style.animationDuration=Math.max(.5,3-S.en.ten/30)+'s'},1000);
+})();
+
+/* ===== ระบบเพิ่มเติมชุดที่ 2 (34 ระบบ) ===== */
+Q('ประกันสังคม','🧓','ss:กองทุนประกันสังคม:50:-.003;in2:แรงงานนอกระบบเข้าถึง:30:-.003','ss>G*.0003@40,in2>ap*.0004@30','เพิ่มเงินสมทบ|18|ss+18;ขยายสิทธิแรงงานอิสระ|20|in2+20,$ap+1;ลงทุนกองทุน|10|ss+8');
+Q('อาชีวะและทักษะ','🔧','vo:คุณภาพอาชีวะ:40:-.003;sk:ทักษะแรงงาน:40:-.003','vo>G*.0003@40,sk>G*.0004@40','สร้างวิทยาลัยเทคนิค|22|vo+20;ฝึกทักษะดิจิทัล|18|sk+18;ทวิภาคีกับเอกชน|12|vo+8,sk+8');
+Q('มหาวิทยาลัยและวิจัย','🔬','rs:งบวิจัย:30:-.003;bd2:สมองไหล:30:.003:b','rs>G*.0005@30,bd2>G*-.0004@35','ทุนวิจัยแห่งชาติ|25|rs+20;ดึงนักวิจัยกลับ|18|bd2-20;ตั้งอุทยานวิทยาศาสตร์|22|rs+10,bd2-8');
+Q('ประมงและชายฝั่ง','🐟','fi:ปริมาณสัตว์น้ำ:50:-.003;il:ประมงผิดกฎหมาย:30:.004:b','fi>G*.0003@40,il>fr*-.0003@35','ฟื้นฟูทรัพยากรทะเล|20|fi+18;ลาดตระเวนทะเล|15|il-20;ช่วยเหลือชาวประมง|12|fi+5,$ap+1');
+Q('ปศุสัตว์และโรคสัตว์','🐄','lv:ฟาร์มมาตรฐาน:40:-.003;ad:โรคระบาดสัตว์:15:.005:b','lv>G*.0003@40,ad>ap*-.0005@25','ฉีดวัคซีนสัตว์|15|ad-20;ตรวจฟาร์ม|12|lv+15;ชดเชยเกษตรกร|18|ad-6,$ap+1');
+Q('อสังหาริมทรัพย์','🏙️','pp:ราคาที่ดิน:50:.004;bb:ความเสี่ยงฟองสบู่:20:.004:b','pp>G*.0003@45,bb>G*-.0006@30','ปรับมาตรการ LTV|15|bb-15;ลดค่าโอน|12|pp+10,$G+1;ภาษีเก็งกำไร|18|bb-20,pp-8');
+Q('ธนาคารและหนี้เสีย','🏦','bk:เสถียรภาพธนาคาร:60:-.003;np:หนี้เสีย NPL:20:.004:b','bk>cash*.004@45,np>G*-.0005@30','เข้มงวดสถาบันการเงิน|18|bk+18;โครงการแก้หนี้เสีย|22|np-20;ตั้งบริษัทบริหารสินทรัพย์|25|np-12,bk+8');
+Q('ฟินเทคและคริปโต','🪙','ft:ฟินเทค:30:-.003;cr:ความเสี่ยงคริปโต:30:.004:b','ft>G*.0004@30,cr>ap*-.0004@40','Sandbox ฟินเทค|15|ft+18;กำกับคริปโต|15|cr-20;เงินบาทดิจิทัล|30|ft+15,cr-5');
+Q('ประกันภัยพิบัติ','☂️','ci:ประกันภัยพิบัติ:30:-.003;rf:กองทุนช่วยเหลือ:45:-.003','ci>ap*.0004@30,rf>cash*.003@40','ประกันพืชผลถ้วนหน้า|20|ci+20;เติมกองทุนช่วยเหลือ|18|rf+20;ประกันบ้านเรือน|15|ci+10,$ap+1');
+Q('ไฟฟ้าและค่าไฟ','💡','pw:กำลังผลิตไฟฟ้า:50:-.003;pr2:ค่าไฟแพง:40:.004:b','pw>G*.0004@40,pr2>ap*-.0005@45','สร้างโรงไฟฟ้า|28|pw+20;ตรึงค่าไฟ|20|pr2-20;ซื้อไฟต่างประเทศ|15|pw+8,pr2-5');
+Q('น้ำมันและก๊าซ','🛢️','oi:สำรองน้ำมัน:45:-.003;op2:ราคาน้ำมัน:40:.004:b','oi>sec*.0003@35,op2>ap*-.0005@45','เติมคลังสำรอง|22|oi+20;กองทุนน้ำมัน|18|op2-18;สัมปทานใหม่|15|oi+10,$cash+0');
+Q('รถยนต์ไฟฟ้าและแบตเตอรี่','🔋','ev:ยอดขาย EV:30:-.003;bt:โรงงานแบตเตอรี่:20:-.002','ev>G*.0004@30,bt>G*.0004@25','เงินอุดหนุน EV|22|ev+20;ชาร์จเจอร์ทั่วประเทศ|20|ev+10,$ap+1;ดึงโรงงานแบต|28|bt+20');
+Q('เซมิคอนดักเตอร์','💾','sc2:โรงงานชิป:15:-.002;tl:วิศวกรชิป:20:-.003','sc2>G*.0006@20,tl>G*.0004@25','ให้สิทธิประโยชน์ลงทุน|28|sc2+20;ผลิตวิศวกรชิป|22|tl+20;ร่วมทุนต่างชาติ|30|sc2+12,tl+8');
+Q('อินเทอร์เน็ตและ 5G','📶','fg:สัญญาณ 5G:40:-.003;fb:ไฟเบอร์ชนบท:30:-.003','fg>G*.0003@40,fb>ap*.0004@30','ประมูลคลื่น|20|fg+20;ไฟเบอร์เข้าหมู่บ้าน|22|fb+20,$ap+1;ศูนย์ข้อมูลแห่งชาติ|25|fg+8,fb+8');
+Q('การบินพาณิชย์','🛫','av:สายการบินไทย:40:-.003;sf:มาตรฐานความปลอดภัย:55:-.003','av>G*.0003@40,sf>ap*.0003@45','เพิ่มเส้นทางบิน|20|av+18;ตรวจมาตรฐาน|12|sf+18;ฟื้นฟูสายการบิน|25|av+12');
+Q('รถไฟความเร็วสูง','🚄','hs2:ความคืบหน้าไฮสปีด:10:-.001;rd:ผู้โดยสารราง:30:-.003','hs2>G*.0006@20,rd>ap*.0003@30','ก่อสร้างช่วงใหม่|35|hs2+15;ลดค่าโดยสาร|15|rd+18,$ap+1;เวนคืนแนวราง|18|hs2+8,$ap-2');
+Q('ถนนและอุบัติเหตุ','🚧','ac2:อุบัติเหตุ:45:.004:b;rs2:ความปลอดภัยถนน:35:-.003','ac2>ap*-.0005@40,rs2>G*.0003@35','กล้อง AI จับความเร็ว|20|ac2-15,rs2+10;รณรงค์ขับขี่ปลอดภัย|10|ac2-8;ซ่อมจุดเสี่ยง|18|rs2+18');
+Q('ความยากจนและคนไร้บ้าน','🏚️','pv:ประชากรยากจน:35:.003:b;sh:ศูนย์พักพิง:25:-.003','pv>ap*-.0006@35,sh>ap*.0003@25','บัตรสวัสดิการ|22|pv-18,$ap+1;สร้างศูนย์พักพิง|18|sh+20;ฝึกอาชีพผู้ยากไร้|15|pv-10');
+Q('ผู้ลี้ภัยและการอพยพ','🧳','rf2:ผู้ลี้ภัยในค่าย:25:.004:b;ig:ความร่วมมือ UNHCR:40:-.003','rf2>sec*-.0004@30,ig>fr*.0003@40','ขยายค่ายพักพิง|20|rf2-8;ประสาน UNHCR|12|ig+18;ส่งกลับอย่างปลอดภัย|18|rf2-18,ig-5');
+Q('ชุมชนท้องถิ่นและชนกลุ่มน้อย','🏘️','et:ความสัมพันธ์ชุมชน:50:-.003;lr:สิทธิที่ดินชุมชน:35:-.003','et>sec*.0004@40,lr>ap*.0003@35','เวทีรับฟังชุมชน|10|et+15;ออกเอกสารสิทธิ์|18|lr+20;กองทุนหมู่บ้าน|15|et+8,lr+5,$ap+1');
+Q('ศาสนาและวัฒนธรรม','🛕','rl:ความเลื่อมใสศาสนา:55:-.003;cu:งบอนุรักษ์วัฒนธรรม:40:-.003','rl>ap*.0004@45,cu>G*.0003@40','ทำนุบำรุงวัด|15|rl+15;เทศกาลวัฒนธรรม|18|cu+18,$ap+1;ปฏิรูปสงฆ์|20|rl+8,cu+8,$cor-1');
+Q('มรดกโลกและโบราณสถาน','🏺','hw:มรดกโลก:40:-.003;rn2:การบูรณะ:35:-.003','hw>G*.0004@40,rn2>ap*.0003@35','ขึ้นทะเบียนใหม่|22|hw+18;บูรณะโบราณสถาน|20|rn2+20;อาสาสมัครวัฒนธรรม|10|hw+6,rn2+6');
+Q('ท่องเที่ยวเชิงสุขภาพ','🧖','wl:สปา/เวลเนส:30:-.003;mt:การแพทย์นานาชาติ:30:-.003','wl>G*.0003@30,mt>cash*.004@30','เวลเนสรีสอร์ท|20|wl+18;โรงพยาบาลนานาชาติ|25|mt+20;วีซ่าพำนักระยะยาว|15|wl+8,mt+8');
+Q('กระจายอำนาจท้องถิ่น','🏛️','dc2:อำนาจ อปท.:40:-.003;lb:งบท้องถิ่น:40:-.003','dc2>ap*.0004@40,lb>G*.0003@40','ถ่ายโอนภารกิจ|18|dc2+18;เพิ่มงบท้องถิ่น|22|lb+20;ตรวจสอบ อปท.|12|dc2+5,$cor-1');
+Q('กกต. และการเลือกตั้ง','🗳️','ec:ความเชื่อมั่นเลือกตั้ง:55:-.003;vf:การซื้อเสียง:25:.004:b','ec>pt*.0004@45,vf>cor*.0006@30','เลือกตั้งอิเล็กทรอนิกส์|25|ec+18;ปราบซื้อเสียง|18|vf-20;ตั้งผู้สังเกตการณ์|10|ec+10');
+Q('พรรคการเมืองและ ส.ส.','🤝','pa:วินัยพรรค:50:-.004;sn:ส.ส. งูเห่า:20:.004:b','pa>pt*.0004@45,sn>pt*-.0007@25','เลี้ยงพบ ส.ส.|8|pa+12;แจกตำแหน่ง|12|sn-15,$cor+1;วิปเข้มงวด|10|pa+10,sn-8');
+Q('องค์กรอิสระ','🧾','ia:อิสระองค์กร:55:-.003;ic:ความเชื่อมั่นประชาชน:50:-.003','ia>cor*-.0004@45,ic>ap*.0003@45','เพิ่มงบองค์กรอิสระ|18|ia+18;เผยแพร่รายงาน|10|ic+15;ห้ามแทรกแซง|8|ia+10,$pt-1');
+Q('สหภาพแรงงานและการประท้วง','✊','un2:สหภาพแรงงาน:40:-.003;pr3:การนัดหยุดงาน:15:.005:b','un2>G*.0003@40,pr3>G*-.0007@25','เจรจาไตรภาคี|12|pr3-18;ปรับสวัสดิการ|20|un2+15,pr3-8;ออกกฎหมายแรงงาน|22|un2+10,$pt+1');
+Q('อาหารปลอดภัยและ อย.','🥫','fs:มาตรฐานอาหาร:50:-.003;rc2:สินค้าเรียกคืน:15:.004:b','fs>ap*.0004@45,rc2>ap*-.0004@25','ตรวจตลาดสด|12|fs+15;ห้องแล็บ อย.|20|fs+12,rc2-8;เรียกคืนสินค้า|10|rc2-15');
+Q('สัตว์ป่าและอนุรักษ์','🐘','wd:ประชากรสัตว์ป่า:45:-.003;pc:การลักลอบค้า:25:.004:b','wd>G*.0003@40,pc>cor*.0004@30','เพิ่มเรนเจอร์|18|wd+15,pc-8;ทลายเครือข่ายค้าสัตว์ป่า|20|pc-20;ทางข้ามสัตว์ป่า|15|wd+12');
+Q('ทะเลและปะการัง','🪸','cr2:ปะการัง:45:-.003;tp:ปริมาณนักดำน้ำ:40:.003:b','cr2>G*.0003@40,tp>G*-.0003@55','ปลูกปะการัง|18|cr2+18;จำกัดนักท่องเที่ยว|12|tp-15,$ap-1;ห้ามทิ้งของเสียทะเล|10|cr2+8');
+Q('แผ่นดินไหวและภัยพิบัติ','🌋','eq:ความพร้อมรับแผ่นดินไหว:30:-.003;bl:อาคารได้มาตรฐาน:35:-.003','eq>ap*.0004@30,bl>G*.0003@35','ซ้อมอพยพ|10|eq+15;ตรวจอาคารสูง|20|bl+20;สร้างศูนย์กู้ภัย|22|eq+12');
+Q('ทหารเกณฑ์และค่ายทหาร','🪖','cn2:ยอดทหารเกณฑ์:50:-.003;ba:สภาพค่ายทหาร:40:-.003','cn2>fr*.0004@40,ba>sec*.0003@40','ปรับระบบเกณฑ์|15|cn2+15;ซ่อมค่ายทหาร|20|ba+20;เพิ่มสวัสดิการ|15|cn2+8,ba+8');
+Q('เขตการค้าเสรี FTA','🤝','ft2:ข้อตกลงการค้า:30:-.003;tb:กำแพงการค้า:35:.003:b','ft2>G*.0005@30,tb>G*-.0004@35','เจรจา FTA|22|ft2+18;ลดกำแพงภาษี|15|tb-18,$ap-1;ส่งเสริมส่งออก|18|ft2+8,tb-6');
+
+/* ===== การบริหารเชื่อมโยงข้ามระบบ ===== */
+(function(){const g=n=>{const d=XS.find(x=>x.n==n);return d?xs(d.id):null},c=(m,k,v,a=0,b=100)=>{if(m)m[k]=cl(m[k]+v,a,b)};
+const _x=xsT;xsT=function(){_x();if(!S||S.over)return;
+ c(g('โรคระบาด'),'vi',-(g('โรคระบาด')||{vc:0}).vc*.0002);
+ const ml=g('ความภักดีกองทัพ');if(ml)c(ml,'cp',ml.ml>60?-.004:.004);
+ c(g('ฝ่ายค้านและอภิปราย'),'op',(S.cor-40)*.0004);
+ c(g('ค่าครองชีพและหนี้ครัวเรือน'),'pr',(50-(g('ตลาดหุ้นและค่าเงินบาท')||{fw:50}).fw)*.0002);
+ c(g('ตลาดแรงงานและค่าแรง'),'ue',(50-S.G/2)*.0003);
+ c(g('ข่าวกรองและต่อต้านก่อการร้าย'),'tr',-(g('อาชญากรรมข้ามชาติ')||{dg:35}).dg*.0000);
+ if(S.ap<30)c(g('สหภาพแรงงานและการประท้วง'),'pr3',.02);
+ if(S.pt<35)c(g('พรรคการเมืองและ ส.ส.'),'sn',.02)}})();
+
+/* ===== เลือกวิธีเข้าสู่อำนาจ: เลือกตั้ง / รัฐประหาร ===== */
+(function(){
+const st=document.createElement('style');st.textContent=`
+.clp{position:absolute;left:0;right:0;bottom:14%;height:40px;pointer-events:none;z-index:3}.clp i{position:absolute;font-size:30px;font-style:normal;animation:clpa .45s ease-in-out infinite alternate}
+@keyframes clpa{from{transform:scale(.8) rotate(-14deg)}to{transform:scale(1.35) rotate(14deg)}}
+#cp{position:fixed;inset:0;z-index:60;background:#000;display:flex;align-items:center;justify-content:center;flex-direction:column;transition:transform .7s cubic-bezier(.7,0,1,.5),opacity .7s,filter .7s}
+#cp.wp{transform:scale(7);opacity:0;filter:blur(8px) brightness(3)}
+#cp .tv{width:min(92vw,420px);background:#1c1c22;border:10px solid #2c2c36;border-radius:26px;padding:8px;box-shadow:0 0 60px #000,0 0 30px #3ddc9722;animation:tvo .5s both}
+@keyframes tvo{from{transform:scale(1,.01);filter:brightness(5)}}
+#cp .tv.sk{animation:tvs .5s}@keyframes tvs{20%{transform:translate(-9px,5px) rotate(-1deg)}40%{transform:translate(8px,-5px) rotate(1deg)}60%{transform:translate(-6px,3px)}80%{transform:translate(4px,-2px)}}
+#cp .scr{position:relative;height:62vh;max-height:470px;background:#0d1b2a;border-radius:14px;overflow:hidden;transform-origin:center}
+#cp .scr::after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(#0000 0 2px,#0004 2px 3px);pointer-events:none}
+#cp.off .scr{animation:crt .75s forwards}
+@keyframes crt{0%{transform:scale(1);filter:brightness(1)}45%{transform:scale(1,.015);filter:brightness(6)}80%{transform:scale(.015,.015);filter:brightness(8)}100%{transform:scale(0);opacity:0}}
+#cp .stu{position:absolute;inset:0 0 34%;background:linear-gradient(#26364f,#0d1b2a)}
+#cp .flag{position:absolute;top:14%;left:8%;font-size:40px}#cp .gen{position:absolute;left:50%;bottom:26%;transform:translateX(-50%);font-size:88px;line-height:1;animation:gn 3s 0s both}
+@keyframes gn{0%,60%{transform:translateX(-50%) translateY(0)}70%{transform:translateX(-50%) translateY(-22px) rotate(-5deg)}77%{transform:translateX(-50%) translateY(8px)}100%{transform:translateX(-50%)}}
+#cp .fist{position:absolute;right:-34px;top:30px;font-size:44px;animation:fs 3s both}@keyframes fs{0%,55%{transform:translate(0,-36px) rotate(-30deg)}72%,100%{transform:translate(-10px,24px) rotate(10deg)}}
+#cp .desk{position:absolute;left:8%;right:8%;bottom:18%;height:26px;background:#5b3a1e;border-radius:6px;box-shadow:0 8px 0 #3b2412}
+#cp .bang{position:absolute;left:50%;bottom:24%;font-size:70px;transform:translateX(-50%);animation:bg .6s 2.2s both}@keyframes bg{from{opacity:1;transform:translateX(-50%) scale(.2)}to{opacity:0;transform:translateX(-50%) scale(2.6)}}
+#cp .bang{opacity:0}
+#cp .lbl{position:absolute;left:0;right:0;top:0;background:#c81e1e;color:#fff;font:700 12px Prompt,sans-serif;padding:5px 8px;animation:bl .8s infinite}
+#cp .pip{position:absolute;left:0;right:0;bottom:0;height:34%;background:#111a2b;border-top:3px solid #c81e1e;display:flex;justify-content:space-around;align-items:center;font-size:34px;opacity:0;animation:pin .4s 3.2s forwards}
+@keyframes pin{to{opacity:1}}#cp .pip span{animation:shv .12s infinite alternate;display:inline-block}@keyframes shv{from{transform:translate(-2px,0) rotate(-4deg)}to{transform:translate(2px,-2px) rotate(4deg)}}
+#cp .pip b{position:absolute;top:-22px;font:800 14px Prompt;color:#ffd23f;background:#c81e1e;padding:1px 8px;border-radius:8px}
+#cp .tk{position:absolute;left:0;right:0;bottom:34%;background:#000c;color:#ffd23f;font:600 12px Prompt,sans-serif;white-space:nowrap;overflow:hidden;padding:3px 0}
+#cp .tk span{display:inline-block;padding-left:100%;animation:tkm 8s linear infinite}@keyframes tkm{to{transform:translateX(-100%)}}
+#cp .cap{color:#8b9ab5;font:600 13px Prompt;margin-top:14px;text-align:center;padding:0 14px;min-height:20px}
+#cps{position:absolute;right:12px;top:calc(env(safe-area-inset-top,0px) + 12px);background:#0008;color:#fff;border:1px solid #fff4;border-radius:14px;padding:6px 12px;font:600 12px Prompt}`;document.head.appendChild(st);
+const g=n=>{const d=XS.find(x=>x.n==n);return d?xs(d.id):null},ad=(m,k,v)=>{if(m)m[k]=cl(m[k]+v,0,100)};
+const _s=start;start=function(){window.PICK=1;['pk','cp'].forEach(i=>{const e=$(i);if(e)e.remove()});_s()};
+const _e0=elect;elect=function(){if(window.PICK==1){window.PICK=2;return choose()}_e0()};
+const _tu=tut;tut=function(i){if(window.PICK&&!i){setTimeout(()=>tut(0),1500);return}_tu(i)};
+function choose(){window.EL=1;const o=document.createElement('div');o.id='pk';o.className='ov on';o.style.zIndex=45;
+ o.innerHTML=`<div class="box"><h3>🏛️ ก้าวสู่อำนาจ</h3><p>${pn} จะขึ้นเป็นนายกรัฐมนตรีแห่ง${cn} ด้วยวิธีใด</p>
+ <button class="o" onclick="pick(0)">🗳️ <b>เลือกตั้ง</b><br><small style="color:var(--mut)">ชนะใจประชาชน · ความนิยม +5 เสียงสภา +5 · เสถียรภาพปกติ</small></button>
+ <button class="o" onclick="pick(1)">🪖 <b>รัฐประหาร</b><br><small style="color:var(--mut)">มั่นคง +15 แนวรบ +8 · ความนิยม −12 เสียงสภา −12 คลัง −10 · ฝ่ายค้านและม็อบตื่นตัว</small></button></div>`;document.body.appendChild(o)}
+window.pick=function(k){const o=$('pk');if(o)o.remove();
+ if(!k){S.ap=cl(S.ap+5,0,100);S.pt=cl(S.pt+5,0,100);_e0();const el=$('el');
+  if(el){el.insertAdjacentHTML('beforeend','<div class="clp">'+Array.from({length:14},(_,i)=>`<i style="left:${3+i*6.6}%;animation-delay:${(i%5)*.12}s">👏</i>`).join('')+'</div>');
+   for(let i=0;i<14;i++)setTimeout(()=>{try{noise(.06,3500,.18,0,2000)}catch(e){}},600+i*230);
+   const b=$('elb');if(b)b.addEventListener('click',()=>{window.PICK=0})}
+  setTimeout(()=>{window.PICK=0},8300);return}
+ S.sec=cl(S.sec+15,0,100);S.fr=cl(S.fr+8,0,100);S.ap=cl(S.ap-12,0,100);S.pt=cl(S.pt-12,0,100);S.cash-=10;
+ try{ad(g('ฝ่ายค้านและอภิปราย'),'op',15);ad(g('ฝ่ายค้านและอภิปราย'),'mo',25);ad(g('ความภักดีกองทัพ'),'ml',15)}catch(e){}
+ coupScene()};
+function coupScene(){window.EL=1;const o=document.createElement('div');o.id='cp';
+ const P=['😱','😨','😰','😧','🤯','😳'];
+ o.innerHTML=`<div class="tv" id="tvb"><div class="scr"><div class="stu"><div class="flag">🇹🇭</div><div class="lbl">🔴 ข่าวด่วน · ประกาศคณะรักษาความสงบแห่งชาติ ฉบับที่ 1</div><div class="gen">🧑‍✈️<span class="fist">👊</span></div><div class="desk"></div><div class="bang">💥</div></div>
+ <div class="tk"><span>ท่าน ${pn} ยึดอำนาจการปกครอง ${cn} · ยกเลิกรัฐธรรมนูญ · ประกาศเคอร์ฟิวทั่วประเทศ · ขอให้ประชาชนอยู่ในความสงบ</span></div>
+ <div class="pip"><b>ประชาชนตกตะลึง!</b>${P.map(p=>`<span style="animation-delay:-${Math.random()*.12}s">${p}</span>`).join('')}</div></div></div>
+ <div class="cap" id="cpc">📺 กำลังถ่ายทอดสด…</div><button id="cps">ข้าม ▶</button>`;document.body.appendChild(o);
+ let done=0;const T=[];const at=(f,t)=>T.push(setTimeout(f,t));
+ try{tone(90,1.6,'sawtooth',.1,.2);at(()=>{noise(.35,500,.5,0,100);tone(60,.3,'square',.3,0);$('tvb')&&$('tvb').classList.add('sk');$('cpc').textContent='🔨 “ตั้งแต่บัดนี้ ข้าพเจ้าขอยึดอำนาจ!”'},2300);
+ at(()=>{[880,660,880,660].forEach((f,i)=>tone(f,.15,'square',.1,i*.2));$('cpc').textContent='😱 ประชาชนตกใจ ข่าวแพร่ทั่วประเทศ'},3200);
+ at(()=>{tone(1500,.5,'sine',.08,0);$('cpc').textContent='…'},6100)}catch(e){}
+ at(()=>o.classList.add('off'),6200);
+ const fin=()=>{if(done)return;done=1;T.forEach(clearTimeout);o.classList.add('off','wp');setTimeout(()=>{o.remove();window.EL=0;window.PICK=0;hud();whisper(0);toast('🪖 ยึดอำนาจสำเร็จ! ฝ่ายค้านและม็อบเริ่มตื่นตัว',4500)},700)};
+ at(fin,7000);$('cps').onclick=fin}
+})();
+
+/* ===== ตัวละครแต่งตัวได้ / ฉากเลือกตั้งใหม่ / กระซิบทริค / ปรับหน้าตาเกม ===== */
+(function(){
+const st=document.createElement('style');st.textContent=`
+body{background:radial-gradient(circle at 20% 0,#14203a 0,#0a0f1a 55%) fixed}
+header{backdrop-filter:blur(10px);box-shadow:0 6px 24px #0007}
+.cd,.row{background:linear-gradient(160deg,#17233d,#101829);border-color:#2c3c5e;box-shadow:0 6px 18px #0005;transition:transform .15s,border-color .2s}
+.row:hover,.ln:hover{transform:translateY(-1px);border-color:var(--gold)}
+.bar i{background-image:linear-gradient(#fff3,#0002);box-shadow:0 0 8px currentColor}
+nav{backdrop-filter:blur(10px);background:#0b1220ee}nav button.on{text-shadow:0 0 10px var(--gold);background:linear-gradient(#e8b04a22,#0000)}
+button.g{background:linear-gradient(135deg,#f5c65a,#e8903a);box-shadow:0 6px 18px #e8903a55;transition:transform .15s}button.g:active{transform:scale(.97)}
+.box{background:linear-gradient(165deg,#182540,#0f1729);border-color:#3a4c75;box-shadow:0 20px 60px #000a,0 0 30px #e8b04a18}
+#st h3{background:linear-gradient(90deg,#ffd166,#fff,#ffd166);background-size:200%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shn 3s linear infinite}@keyframes shn{to{background-position:200%}}
+#st::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 20% 80%,#e8b04a33,#0000 40%),radial-gradient(circle at 80% 20%,#5ab0ff33,#0000 40%);animation:orb 8s ease-in-out infinite alternate;pointer-events:none}@keyframes orb{to{transform:scale(1.25) rotate(8deg)}}
+.avp{text-align:center;background:radial-gradient(circle,#2a3b62,#101829);border-radius:14px;padding:6px;margin:6px 0}.arm{animation:arm .7s ease-in-out infinite alternate}@keyframes arm{from{transform:rotate(-14deg)}to{transform:rotate(16deg)}}
+.dl{font-size:11px;color:var(--mut);margin-top:6px}.sw{display:inline-block;width:24px;height:24px;border-radius:50%;border:2px solid var(--ln);margin:2px;cursor:pointer}.sw.on{border-color:var(--gold);box-shadow:0 0 8px var(--gold)}
+.c2{display:inline-block;padding:3px 9px;border-radius:12px;border:1px solid var(--ln);background:var(--p2);font-size:12px;margin:2px;cursor:pointer}.c2.on{border-color:var(--gold);color:var(--gold)}
+#e2{position:fixed;inset:0;z-index:50;overflow:hidden;background:radial-gradient(ellipse at 50% 20%,#7c3aed,#2a1454 45%,#0b0620);display:flex;flex-direction:column;align-items:center;animation:fin .6s}
+#e2 .sp{position:absolute;top:-10%;left:-5%;width:60%;height:120%;background:conic-gradient(from 180deg at 50% 0,#0000 42%,#ffe8a377 50%,#0000 58%);transform-origin:50% 0;animation:sw2 4s ease-in-out infinite alternate;pointer-events:none}#e2 .sp.b{left:45%;animation-direction:alternate-reverse}@keyframes sw2{from{transform:rotate(-18deg)}to{transform:rotate(18deg)}}
+#e2 .bn2{margin-top:calc(env(safe-area-inset-top,0px) + 26px);font:800 30px Prompt;color:#fff;text-shadow:0 3px 0 #b45309,0 0 24px #ffd166;z-index:3;text-align:center;animation:bnc2 1s infinite}
+#e2 .sb{z-index:3;font:600 14px Sarabun;color:#fff;background:#0006;padding:4px 12px;border-radius:12px;margin:6px 12px;text-align:center}
+#e2 .stg{position:relative;margin-top:1vh;z-index:2;text-align:center}#e2 .stg svg{animation:bob 1.2s ease-in-out infinite}@keyframes bob{50%{transform:translateY(-6px)}}
+#e2 .pod{width:150px;height:60px;margin:-12px auto 0;background:linear-gradient(#8b5a2b,#5b3a1e);border-radius:8px 8px 0 0;box-shadow:0 0 30px #ffd16688;color:#ffd166;font:800 11px/60px Prompt}
+#e2 .cw{position:absolute;left:0;right:0;bottom:64px;display:flex;flex-wrap:wrap;justify-content:center;z-index:3}#e2 .cw span{font-size:34px;animation:jmp .45s ease-in-out infinite alternate}@keyframes jmp{to{transform:translateY(-18px)}}
+#e2 .sc{position:absolute;z-index:4;font:800 14px Prompt;color:#fff;background:#ec4899;padding:3px 10px;border-radius:14px;animation:scp 2.4s infinite both}@keyframes scp{0%{transform:scale(0) rotate(-8deg);opacity:0}15%,60%{transform:scale(1) rotate(-4deg);opacity:1}100%{transform:scale(1.2) translateY(-24px);opacity:0}}
+#e2 .ht{position:absolute;bottom:20%;font-size:22px;animation:hup 3s infinite both}@keyframes hup{to{transform:translateY(-55vh) scale(1.5);opacity:0}}
+#e2 .cf b{position:absolute;top:-10px;width:8px;height:14px;border-radius:2px;animation:cfl linear infinite}
+#e2 .g{position:absolute;bottom:14px;left:14px;right:14px;width:auto;z-index:5}
+#e2 .rg{position:absolute;left:50%;top:38%;width:20px;height:20px;margin:-10px;border:3px solid #ffd166;border-radius:50%;opacity:0;z-index:6}
+#e2.wp{animation:pw .9s forwards}@keyframes pw{40%{filter:brightness(2) hue-rotate(50deg)}to{transform:scale(6) rotate(20deg);opacity:0;filter:blur(10px) brightness(4)}}#e2.wp .rg{animation:rgx .9s forwards}@keyframes rgx{from{opacity:1;transform:scale(1)}to{opacity:0;transform:scale(60)}}
+#wh{position:fixed;inset:0;z-index:55;background:radial-gradient(circle at 35% 55%,#3b2a5c,#0a0714 70%);display:flex;flex-direction:column;justify-content:flex-end;padding:14px;animation:fin .5s}
+#wh .pmv{position:absolute;left:2%;bottom:30%;animation:pmt 3s ease-in-out infinite}@keyframes pmt{50%{transform:rotate(-3deg) translateX(4px)}}
+#wh .adv{position:absolute;right:4%;bottom:30%;font-size:110px;line-height:1;transform:scaleX(-1);animation:adv .9s cubic-bezier(.2,1,.3,1) both}@keyframes adv{from{transform:scaleX(-1) translateX(-220%) rotate(-10deg);opacity:0}}
+#wh .ps{position:absolute;right:33%;bottom:52%;font-size:28px;animation:psx 1s infinite}@keyframes psx{50%{transform:scale(1.3);opacity:.5}}
+#wh .tb{background:#0b1220ee;border:1px solid var(--gold);border-radius:16px;padding:14px;box-shadow:0 0 30px #e8b04a33;z-index:2}#wh .tb small{color:var(--gold);font:700 11px Prompt}#wh .tb p{min-height:66px;margin:6px 0;font-size:15px}
+`;document.head.appendChild(st);
+window.avSvg=(c,w)=>`<div class="wvb" style="width:${w}px;display:inline-block">${av(AV)}</div>`;
+document.head.insertAdjacentHTML('beforeend','<style>.wvb{transform-origin:50% 100%;animation:wvb 1.1s ease-in-out infinite alternate}@keyframes wvb{from{transform:rotate(-3deg)}to{transform:rotate(3deg)}}</style>');
+const _h=hud;hud=function(){_h();const t=document.querySelector('#ttl .tl');if(t&&!t.querySelector('svg'))t.insertAdjacentHTML('afterbegin','<span style="float:left;margin-right:6px">'+avSvg(AV,26)+'</span>')};
+const _s=start;start=function(){window.WT=Date.now();_s()};
+tut=function(i){if(window.PICK||window.WH||Date.now()-(window.WT||0)<20000)return;whisper(0)};
+const _e1=elect;elect=function(){if(window.PICK==1)return _e1();electScene()};
+const _pk=window.pick;window.pick=function(k){if(k)return _pk(k);const o=$('pk');if(o)o.remove();S.ap=cl(S.ap+5,0,100);S.pt=cl(S.pt+5,0,100);electScene()};
+function electScene(){window.EL=1;const o=document.createElement('div');o.id='e2';const P=['🧑‍🦱','👩‍🦰','👨‍🦳','🧒','👧','🧓','🧑‍🌾','👩‍🎓','👨‍🚒','👩‍⚕️','🧑‍🎤','👵'];
+ let cw='',cf='',hs='',sc='';const W=['กรี๊ดดด!!','นายกฯ!!','สู้ๆ!','เย้!! 🎉','รักนายกฯ ❤️','ว้าว!!'];
+ for(let i=0;i<16;i++)cw+=`<span style="animation-delay:${(i*.09%.5).toFixed(2)}s">${i%5==0?'🙌':P[i%P.length]}</span>`;
+ for(let i=0;i<60;i++)cf+=`<b style="left:${Math.random()*100}%;animation-duration:${2+Math.random()*3}s;animation-delay:${Math.random()*3}s;background:hsl(${Math.random()*360},90%,60%)"></b>`;
+ for(let i=0;i<10;i++)hs+=`<i class="ht" style="left:${Math.random()*92}%;animation-delay:${Math.random()*3}s">${['❤️','💛','🇹🇭','⭐'][i%4]}</i>`;
+ for(let i=0;i<6;i++)sc+=`<div class="sc" style="left:${8+(i%3)*30}%;top:${40+(i>2?14:0)}%;animation-delay:${i*.4}s">${W[i]}</div>`;
+ o.innerHTML=`<div class="sp"></div><div class="sp b"></div><div class="cf">${cf}</div><div class="bn2">🗳️ เลือกตั้งสำเร็จ!</div><div class="sb">${pn} ชนะใจประชาชน ขึ้นเป็นนายกฯ แห่ง${cn}</div><div class="stg">${avSvg(AV,160,1)}<div class="pod">นายกรัฐมนตรี</div></div>${sc}${hs}<div class="cw">${cw}</div><button class="g" id="e2b">เข้าสู่ทำเนียบ ▶</button><i class="rg"></i><i class="rg" style="animation-delay:.15s"></i><i class="rg" style="animation-delay:.3s"></i>`;
+ document.body.appendChild(o);try{[523,659,784,1047,784,1047,1319].forEach((f,i)=>tone(f,.25,'triangle',.14,i*.18));for(let i=0;i<14;i++)setTimeout(()=>noise(.06,3500,.18,0,2000),500+i*260)}catch(e){}
+ let d=0;const fin=()=>{if(d)return;d=1;o.classList.add('wp');setTimeout(()=>{o.remove();window.EL=0;window.PICK=0;hud();whisper(0)},900)};$('e2b').onclick=fin;setTimeout(fin,9000)}
+const TP=['แตะไอคอนบนแผนที่ทันที ทุกเหตุการณ์มีเวลาจำกัด ถ้าปล่อยเลยเวลานับเป็นความผิด','ตัดสินใจผิดครบ 4 ครั้ง หรือค่าใดเหลือ 0 ท่านจะถูกปลด','แท็บคลัง/ภาษี: อย่าปล่อยดุลรายเดือนติดลบนาน หนี้พอกจะพังเร็ว','สร้างเขื่อนก่อนฤดูฝน จังหวัดริมแม่น้ำเสี่ยงน้ำท่วมมากที่สุด','ความตึงเครียดกับกุมใบชาเกิน 65 เมื่อไร เตรียมรับการบุกได้เลย ส่งทูตเจรจาไว้ก่อน','ดูแท็บ ระบบ+ บ่อยๆ ตัวชี้วัดสีแดงจะลามไปกระทบความนิยมและเสียงสภา','ทุจริตสูงทำให้ฝ่ายค้านแรง เสียงสภาตก อย่าปล่อยไว้','ใกล้เลือกตั้ง เก็บความนิยมไว้ให้สูง พ่ายแพ้แล้วจบเกมทันที'];
+window.whisper=function(n){if(window.WH&&n===0)return;let o=$('wh');
+ if(n===0){window.WH=TP.slice().sort(()=>Math.random()-.5).slice(0,4);window.WI=0;window.EL=1;o=document.createElement('div');o.id='wh';document.body.appendChild(o)}
+ if(!o)return;if(window.WI>=WH.length){o.remove();window.WH=0;window.EL=0;return}
+ const t=WH[WI];o.innerHTML=`<div class="pmv">${avSvg(AV,120)}</div><div class="adv">🕴️</div><div class="ps">🤫</div><div class="tb"><small>🕴️ ที่ปรึกษาลับกระซิบ · ทริค ${WI+1}/${WH.length}</small><p id="wt"></p><button class="g" id="wn" style="margin-top:0">${WI+1<WH.length?'รับทราบ ▶':'เริ่มบริหารประเทศ 🏛️'}</button><button class="c2" style="margin-top:8px" id="wk">ข้ามทั้งหมด</button></div>`;
+ try{noise(.6,6000,.07,0,3000)}catch(e){}let p=0;clearInterval(window.WY);window.WY=setInterval(()=>{const e=$('wt');if(!e){clearInterval(WY);return}e.textContent=t.slice(0,++p);if(p>=t.length)clearInterval(WY)},26);
+ $('wn').onclick=()=>{WI++;whisper(1)};$('wk').onclick=()=>{WI=99;whisper(1)}};
+})();
+
+/* ===== UI: แผงสถานการณ์ลอยบนแมพ / แมพใหญ่ซูมได้ / ปุ่มและหัวเกมสวยขึ้น ===== */
+(function(){
+const st=document.createElement('style');st.textContent=`
+#e2 .sc{border:0}
+body #vm{position:relative}@media(min-width:800px){body #vm.on{display:block}}
+body #mapw{display:block!important;overflow:auto!important;height:calc(var(--mh,60vh) + 14px);border-radius:16px;border:1px solid #3a4c75;box-shadow:0 10px 30px #0008,inset 0 0 50px #000a;scrollbar-width:none}
+body #mapw::-webkit-scrollbar{display:none}
+body #mapw #map{width:calc(100% * var(--mz,1.3));max-width:none;height:auto;display:block}
+body #vm aside{position:absolute;top:10px;right:10px;width:min(250px,54vw);max-height:calc(var(--mh,60vh) - 30px);overflow:auto;z-index:6;padding:8px;border-radius:18px;background:#0b1220d4;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:1px solid #e8b04a55;box-shadow:0 12px 32px #000a;scrollbar-width:thin}
+body #vm aside #wx{padding:6px 8px!important;margin-bottom:6px!important;font-size:12px;box-shadow:none}
+body #vm aside #tick{font-size:12px;padding:6px 8px;border-radius:10px;background:#ffffff0d;border:1px solid #ffffff14}
+body #vm aside .row{font-size:12px;padding:6px 8px;border-radius:10px;background:#ffffff0a;border:1px solid #ffffff14;margin-top:5px;box-shadow:none}
+body #vm aside.min #list,body #vm aside.min #wx{display:none}
+body #vm aside.min #asT i{transform:rotate(-90deg)}
+body #vm aside.hot #asT{background:linear-gradient(135deg,#ff5a5f,#c81e1e);color:#fff}
+#asT{display:flex;align-items:center;justify-content:space-between;width:100%;background:linear-gradient(135deg,#f5c65a,#e8903a);color:#1a1405;border:0;border-radius:12px;padding:7px 10px;font:700 13px Prompt,sans-serif;margin-bottom:6px;cursor:pointer}
+#asT b{background:#1a1405;color:#ffd166;border-radius:10px;padding:0 8px;margin-left:4px}#asT i{font-style:normal;transition:transform .2s}
+#mz{position:absolute;left:10px;bottom:12px;z-index:6;display:flex;flex-direction:column;gap:6px}
+#mz button{width:38px;height:38px;border-radius:12px;border:1px solid #e8b04a77;background:#0b1220d0;color:#ffd166;font:700 18px Prompt,sans-serif;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);cursor:pointer;box-shadow:0 4px 12px #0008}#mz button:active{transform:scale(.92)}
+body header{background:linear-gradient(180deg,#16233ff2,#0d1526f2);border-bottom:1px solid #e8b04a55;box-shadow:0 8px 28px #000a}
+body #ttl .tl b{background:linear-gradient(90deg,#ffd166,#fff 70%);-webkit-background-clip:text;background-clip:text;color:transparent}
+body #ttl .tr span{background:linear-gradient(160deg,#1f2d4d,#152036);border:1px solid #3a4c75;box-shadow:0 2px 6px #0005}
+body #hud .sc{border-radius:12px;border:1px solid #33456b;box-shadow:0 4px 12px #0006,inset 0 1px 0 #ffffff14}
+body #mon .mt{background:linear-gradient(160deg,#1c2a48,#121c33);border:1px solid #2f4068;border-radius:12px;box-shadow:0 3px 8px #0005}
+body #nws{background:linear-gradient(90deg,#c81e1e33,#1a243a);border:1px solid #c81e1e55;border-radius:10px}
+body .ln,body button.o,body .ch{background:linear-gradient(160deg,#1e2c4b,#141e36);border:1px solid #33456b;border-radius:14px;box-shadow:0 3px 10px #0005;transition:transform .15s,border-color .2s,box-shadow .2s}
+body .ch{padding:7px 4px;border-radius:12px}
+body .ln:hover,body button.o:hover,body .ch:hover{border-color:var(--gold);box-shadow:0 0 14px #e8b04a44;transform:translateY(-1px)}
+body .ln:active,body button.o:active,body .ch:active{transform:scale(.98)}
+body button.g{border-radius:14px}
+body nav{overflow-x:auto;scrollbar-width:none;background:linear-gradient(0deg,#0a101dee,#101a2eee);border-top:1px solid #e8b04a44;box-shadow:0 -8px 24px #000a}
+body nav::-webkit-scrollbar{display:none}
+body nav button{flex:0 0 auto;min-width:64px;transition:color .2s,background .2s}
+body nav button.on{color:#ffd166;background:linear-gradient(#e8b04a2a,#0000);box-shadow:inset 0 3px #e8b04a;text-shadow:0 0 10px #e8b04a}`;
+document.head.appendChild(st);
+const a=document.querySelector('#vm aside'),vm=$('vm'),mw=$('mapw');let z=1.3;
+a.insertAdjacentHTML('afterbegin','<button id="asT" type="button"><span>📋 สถานการณ์ <b id="asN">0</b></span><i>▾</i></button>');
+if(matchMedia('(max-width:700px)').matches)a.classList.add('min');
+$('asT').onclick=()=>a.classList.toggle('min');
+setInterval(()=>{const e=$('asN');if(e)e.textContent=document.querySelectorAll('#list .row').length;a.classList.toggle('hot',!!document.querySelector('#tick.w'))},700);
+const ctr=()=>{mw.scrollLeft=(mw.scrollWidth-mw.clientWidth)/2;mw.scrollTop=(mw.scrollHeight-mw.clientHeight)/2};
+window.MZ=d=>{const ox=(mw.scrollLeft+mw.clientWidth/2)/mw.scrollWidth,oy=(mw.scrollTop+mw.clientHeight/2)/mw.scrollHeight;z=d==0?1.3:cl(z+d,1,3);document.documentElement.style.setProperty('--mz',z);
+ if(d==0)ctr();else{mw.scrollLeft=ox*mw.scrollWidth-mw.clientWidth/2;mw.scrollTop=oy*mw.scrollHeight-mw.clientHeight/2}};
+vm.insertAdjacentHTML('beforeend','<div id="mz"><button type="button" onclick="MZ(.25)">＋</button><button type="button" onclick="MZ(-.25)">－</button><button type="button" onclick="MZ(0)">⌂</button></div>');
+document.documentElement.style.setProperty('--mz',z);setTimeout(ctr,300);
+const _tb=tab;tab=function(v,b){_tb(v,b);if(v=='vm')setTimeout(ctr,60)};
+const _stt=start;start=function(){_stt();setTimeout(ctr,400)};
+})();
+
+/* ===== แก้สีตัวอักษร/พื้นหลังให้ตามธีม (กลางวัน/พลบค่ำ/กลางคืน) และสถานะ ===== */
+(function(){const st=document.createElement('style');st.textContent=`
+body{background:linear-gradient(180deg,var(--s1),var(--s2)) fixed;color:var(--fg)}
+body header{background:linear-gradient(var(--h1),var(--h2));border-bottom:1px solid var(--gold)}
+body #ttl .tl b{background:none;-webkit-text-fill-color:currentColor;color:var(--fg)}
+body #ttl .tr span{background:linear-gradient(160deg,var(--m1),var(--m2));border:1px solid var(--ln);color:var(--fg)}
+body #hud .sc{border-color:var(--ln)}
+body #mon .mt{background:linear-gradient(160deg,var(--m1),var(--m2));border:1px solid var(--ln);color:var(--mut)}
+body #nws{background:var(--p2);border:1px solid var(--ln);color:var(--fg)}
+body .cd,body .row{background:linear-gradient(160deg,var(--c1),var(--c2));border-color:var(--ln);color:var(--fg)}
+body .box{background:linear-gradient(160deg,var(--c1),var(--c2));border-color:var(--ln);color:var(--fg)}
+body .ln,body button.o,body .ch{background:linear-gradient(160deg,var(--m1),var(--m2));border:1px solid var(--ln);color:var(--fg)}
+body .ln small,body .row small{color:var(--mut)}
+body nav{background:var(--nv);border-top:1px solid var(--gold)}
+body nav button{color:var(--mut)}
+body nav button.on{color:var(--gold);text-shadow:none;background:transparent;box-shadow:inset 0 3px var(--gold)}
+body #st h3{background:none;-webkit-text-fill-color:currentColor;color:var(--gold);animation:none}
+body #mapw{border-color:var(--ln);box-shadow:0 10px 30px #0006,inset 0 0 40px #0003}
+body #vm aside{background:var(--h1);border-color:var(--gold)}
+body #vm aside #tick{background:var(--p2);border:1px solid var(--ln);color:var(--fg)}
+body #vm aside #tick.w{background:#5b1a1f;border-color:#ff5a5f;color:#fff}
+body #vm aside .row{background:var(--p2);border-color:var(--ln);color:var(--fg)}
+body #vm aside #wx{background:var(--p2);color:var(--fg)}
+#mz button{background:var(--h1);color:var(--gold);border-color:var(--gold)}`;
+document.head.appendChild(st)})();
+
+/* ===== ระบบเพิ่มเติมชุดที่ 3 (30 ระบบ) ===== */
+Q('พลังงานนิวเคลียร์','☢️','nu:โรงไฟฟ้านิวเคลียร์:5:-.001;ns:ความปลอดภัยนิวเคลียร์:50:-.003','nu>G*.0008@10,ns>ap*.0004@45','ศึกษาความเป็นไปได้|15|nu+10;สร้างเตาปฏิกรณ์|40|nu+25,ns-5;ตั้งหน่วยกำกับ|15|ns+20');
+Q('ไฮโดรเจนสะอาด','⚗️','hy:โรงผลิตไฮโดรเจน:10:-.002;hx:ส่งออกพลังงานสะอาด:10:-.002','hy>G*.0005@15,hx>cash*.004@10','ลงทุนโรงไฮโดรเจน|30|hy+20;หาผู้ซื้อต่างประเทศ|20|hx+18;ให้สิทธิ BOI|12|hy+8,hx+6');
+Q('โซลาร์ชุมชน','☀️','sl:แผงโซลาร์หมู่บ้าน:20:-.003;eg:ไฟฟ้าชุมชนพึ่งตนเอง:25:-.003','sl>ap*.0004@25,eg>G*.0003@25','ติดโซลาร์รูฟท็อป|20|sl+20,$ap+1;กองทุนพลังงานชุมชน|18|eg+18;รับซื้อไฟส่วนเกิน|12|sl+6,eg+8');
+Q('เมืองอัจฉริยะ','🌆','sc3:เมืองอัจฉริยะ:20:-.003;dt:ข้อมูลเมือง:30:-.003','sc3>G*.0005@25,dt>sec*.0003@30','นำร่องเมืองอัจฉริยะ|28|sc3+20;ศูนย์ข้อมูลเมือง|18|dt+20;กล้อง IoT|15|sc3+8,dt+8,$ap-1');
+Q('ตำรวจและความปลอดภัย','👮','po:กำลังตำรวจ:50:-.003;tu:ความเชื่อมั่นตำรวจ:45:-.003','po>sec*.0004@45,tu>ap*.0004@40','เพิ่มกำลังตำรวจ|20|po+20;ตำรวจชุมชน|15|tu+18;กล้องติดตัว|12|tu+10,$cor-1');
+Q('ดับเพลิงและกู้ภัย','🚒','fr2:กำลังดับเพลิง:45:-.003;rs3:ศูนย์กู้ภัย:40:-.003','fr2>ap*.0003@40,rs3>ap*.0004@35','เพิ่มรถดับเพลิง|20|fr2+20;สร้างศูนย์กู้ภัย|22|rs3+20;ฝึกอาสาสมัคร|10|fr2+8,rs3+8');
+Q('ทะเบียนดิจิทัล','🪪','id:บัตรประชาชนดิจิทัล:30:-.003;pv2:ความเป็นส่วนตัว:50:-.003','id>G*.0004@30,pv2>ap*.0004@45','ออกบัตรดิจิทัล|20|id+20;กฎหมายข้อมูลส่วนบุคคล|15|pv2+18;แอปรัฐบาล|18|id+10,$ap+1');
+Q('ขนส่งมวลชนกรุงเทพ','🚇','mt2:รถไฟฟ้า:45:-.003;fr3:ค่าโดยสารเหมาะสม:40:-.003','mt2>G*.0004@40,fr3>ap*.0005@35','ต่อขยายสายใหม่|32|mt2+20;ตั๋วร่วม|18|fr3+18,$ap+1;เพิ่มขบวนรถ|20|mt2+10');
+Q('จักรยานและเดินเท้า','🚲','bc:ทางจักรยาน:20:-.003;wk:ทางเท้าปลอดภัย:35:-.003','bc>ap*.0003@25,wk>ap*.0003@35','สร้างเลนจักรยาน|15|bc+20;ปรับทางเท้า|15|wk+20;จักรยานสาธารณะ|12|bc+8,wk+6');
+Q('ส่งออกข้าว','🍚','rc3:คุณภาพข้าวหอม:50:-.003;rx:ตลาดส่งออกข้าว:45:-.003','rc3>cash*.003@40,rx>G*.0004@40','พัฒนาพันธุ์ข้าว|18|rc3+18;เปิดตลาดใหม่|20|rx+20;โครงการรับจำนำ|25|rx+10,$ap+2');
+Q('ยางพารา','🌳','rb:ราคายาง:45:-.004;rp:การแปรรูปยาง:30:-.003','rb>ap*.0004@40,rp>G*.0004@30','ประกันราคายาง|20|rb+18;โรงงานแปรรูป|25|rp+20;ส่งออกยางล็อตใหญ่|15|rb+8,rp+5');
+Q('ปาล์มน้ำมัน','🌴','pm2:ผลผลิตปาล์ม:50:-.003;bd3:ไบโอดีเซล:25:-.003','pm2>G*.0003@45,bd3>cash*.003@25','เพิ่มพันธุ์ปาล์ม|15|pm2+18;ผสมไบโอดีเซล|20|bd3+20;ตั้งโรงกลั่น|25|bd3+10,pm2+5');
+Q('ผลไม้ส่งออก','🥭','fr4:คุณภาพผลไม้:50:-.003;lg2:ห้องเย็นและโลจิสติกส์:35:-.003','fr4>cash*.003@45,lg2>G*.0004@35','ตรวจมาตรฐานผลไม้|15|fr4+15;สร้างห้องเย็น|22|lg2+20;เปิดตลาดจีน|20|fr4+8,lg2+8');
+Q('อาหารแปรรูป','🥫','fp:โรงงานแปรรูป:35:-.003;br:แบรนด์อาหารไทย:30:-.003','fp>G*.0004@35,br>cash*.003@30','ส่งเสริมโรงงาน|22|fp+20;สร้างแบรนด์ไทย|18|br+20;มาตรฐาน Halal/HACCP|15|fp+8,br+8');
+Q('ยานยนต์ดั้งเดิม','🚗','au:ห่วงโซ่ยานยนต์:55:-.003;su2:ซัพพลายเออร์ไทย:45:-.003','au>G*.0004@50,su2>cash*.003@40','ปรับโครงสร้างภาษีรถ|18|au+15;อุดหนุนซัพพลายเออร์|20|su2+20;เจรจาค่ายรถ|15|au+8');
+Q('สิ่งทอและแฟชั่น','🧵','tx:โรงงานสิ่งทอ:40:-.003;fs2:แฟชั่นไทย:30:-.003','tx>G*.0003@40,fs2>cash*.003@30','ปรับเครื่องจักร|20|tx+18;สัปดาห์แฟชั่น|15|fs2+18;ส่งเสริมดีไซเนอร์|12|fs2+8,$ap+1');
+Q('เหมืองแร่','⛏️','mn:การผลิตแร่:40:-.003;mv:ผลกระทบสิ่งแวดล้อม:30:.004:b','mn>cash*.004@35,mv>ap*-.0005@35','ให้สัมปทานเหมือง|20|mn+20,mv+8;ฟื้นฟูพื้นที่เหมือง|20|mv-20;ตรวจมาตรฐาน|12|mv-8');
+Q('น้ำทะเลหนุนและชายฝั่ง','🌊','cs:แนวป้องกันชายฝั่ง:30:-.003;er:การกัดเซาะชายฝั่ง:35:.004:b','cs>ap*.0004@30,er>G*-.0004@40','สร้างกำแพงกันคลื่น|25|cs+20,er-8;ปลูกป่าชายเลน|18|er-15;ย้ายชุมชนเสี่ยง|20|er-10,$ap-1');
+Q('สุขภาพจิต','🧠','mh:บริการสุขภาพจิต:30:-.003;st2:ความเครียดประชาชน:40:.004:b','mh>ap*.0004@30,st2>ap*-.0005@45','เปิดคลินิกสุขภาพจิต|20|mh+20;สายด่วนช่วยเหลือ|12|st2-15;รณรงค์ดูแลใจ|10|st2-8,mh+5');
+Q('ผู้พิการและการเข้าถึง','♿','dsb:สิทธิผู้พิการ:40:-.003;acc2:สิ่งอำนวยความสะดวก:35:-.003','dsb>ap*.0004@35,acc2>ap*.0003@35','เบี้ยความพิการ|18|dsb+18,$ap+1;ปรับปรุงอาคาร|20|acc2+20;จ้างงานผู้พิการ|15|dsb+8,acc2+5');
+Q('ความเท่าเทียมหลากหลาย','🏳️‍🌈','lq:ความเท่าเทียม:40:-.003;lw:กฎหมายคุ้มครอง:30:-.003','lq>ap*.0004@40,lw>G*.0003@30','กฎหมายสมรสเท่าเทียม|18|lw+20,lq+10;รณรงค์ความเข้าใจ|12|lq+15;คุ้มครองการเลือกปฏิบัติ|15|lw+10');
+Q('สตรีและความเสมอภาค','👩‍💼','wm:สตรีในตำแหน่งบริหาร:35:-.003;pg:ช่องว่างค่าจ้าง:40:.003:b','wm>G*.0004@35,pg>ap*-.0004@40','โควตาสตรีบริหาร|15|wm+18;กฎหมายค่าจ้างเท่าเทียม|18|pg-18;ศูนย์เลี้ยงเด็กที่ทำงาน|15|wm+8,pg-6');
+Q('เยาวชนและอีสปอร์ต','🎮','yt:กิจกรรมเยาวชน:40:-.003;es:อุตสาหกรรมอีสปอร์ต:20:-.003','yt>ap*.0004@35,es>G*.0004@20','ศูนย์เยาวชน|18|yt+18;ลีกอีสปอร์ตแห่งชาติ|22|es+20;ทุนนักกีฬา|12|yt+8,es+8');
+Q('ห้องสมุดและการอ่าน','📚','lb2:ห้องสมุดสาธารณะ:35:-.003;rd2:วัฒนธรรมการอ่าน:35:-.003','lb2>ap*.0003@35,rd2>G*.0003@35','ห้องสมุดประชาชน|15|lb2+18;มหกรรมหนังสือ|12|rd2+15;E-book ฟรี|15|lb2+8,rd2+8,$ap+1');
+Q('วิสาหกิจชุมชน','🧺','ce:วิสาหกิจชุมชน:35:-.003;ot:ผลิตภัณฑ์ OTOP:35:-.003','ce>ap*.0004@35,ot>cash*.003@35','ทุนวิสาหกิจ|18|ce+18;ตลาดออนไลน์ OTOP|15|ot+18;อบรมบัญชีชุมชน|10|ce+8,ot+5');
+Q('ตลาดทุนและกองทุนรวม','💹','cm:ตลาดทุนไทย:45:-.003;mf:กองทุนรวม:35:-.003','cm>G*.0004@40,mf>cash*.003@35','ส่งเสริมการลงทุน|18|cm+18;กองทุนรวมเพื่อการออม|15|mf+18;กำกับ ก.ล.ต.|12|cm+8,$cor-1');
+Q('สหกรณ์ออมทรัพย์','🏦','cp2:สหกรณ์:45:-.003;sv2:เงินออมประชาชน:40:-.003','cp2>ap*.0003@40,sv2>G*.0003@40','สนับสนุนสหกรณ์|15|cp2+15;ออมเพื่อชาติ|18|sv2+20;ตรวจสอบสหกรณ์|12|cp2+8,$cor-1');
+Q('สังคมสูงวัยดิจิทัล','👴','el2:ผู้สูงอายุใช้ดิจิทัล:25:-.003;cr2:ศูนย์ดูแลผู้สูงอายุ:30:-.003','el2>ap*.0004@25,cr2>ap*.0004@30','อบรมดิจิทัลสูงวัย|12|el2+18;ตั้งศูนย์ดูแล|22|cr2+20;แอปสุขภาพผู้สูงอายุ|15|el2+8,cr2+6');
+Q('พัฒนาชายแดนใต้','🕊️','sb:ความไว้ใจชุมชน:40:-.003;sd:การลงทุนพื้นที่:25:-.003','sb>sec*.0005@40,sd>G*.0004@25','เวทีพูดคุยสันติสุข|15|sb+18;เขตเศรษฐกิจพิเศษ|28|sd+20;โครงการการศึกษา|18|sb+8,sd+6');
+Q('ศูนย์ร้องเรียน 1111','☎️','cc2:ความรวดเร็วตอบเรื่อง:40:-.003;tr2:ความโปร่งใสรัฐ:40:-.003','cc2>ap*.0005@35,tr2>cor*-.0004@40','เพิ่มเจ้าหน้าที่|15|cc2+18;เปิดเผยสถานะเรื่อง|12|tr2+18;แอปร้องเรียน|15|cc2+8,tr2+6');
+
+/* ===== ลูกเล่นตกแต่ง 30 อย่าง ===== */
+(function(){const st=document.createElement('style');st.textContent=`
+body header::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:2px;background:linear-gradient(90deg,#0000,var(--gold),#0000);background-size:200%;animation:hsh 4s linear infinite}@keyframes hsh{to{background-position:200%}}
+body nav button.on{animation:nvb .4s}@keyframes nvb{50%{transform:translateY(-4px)}}
+.rp{position:fixed;width:80px;height:80px;margin:-40px 0 0 -40px;border-radius:50%;background:var(--gold);opacity:.35;pointer-events:none;transform:scale(0);animation:rpl .55s ease-out forwards;z-index:99}@keyframes rpl{to{transform:scale(1);opacity:0}}
+.v.on{animation:vin2 .35s ease-out}@keyframes vin2{from{opacity:0;transform:translateY(8px)}}
+.ff{position:fixed;z-index:-1;width:5px;height:5px;border-radius:50%;background:var(--gold);box-shadow:0 0 10px var(--gold);opacity:.5;pointer-events:none;animation:ffm 14s ease-in-out infinite alternate}@keyframes ffm{to{transform:translate(40px,-90px);opacity:.1}}
+#map circle[id^=pd]{transition:r .15s}#map circle[id^=pd]:hover{r:7px;filter:drop-shadow(0 0 4px var(--gold))}
+.mk:hover{filter:brightness(1.3) drop-shadow(0 0 6px #fff8)}
+.bar i{position:relative;overflow:hidden}.bar i::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#0000,#fff5,#0000);transform:translateX(-100%);animation:bsh 2.4s infinite}@keyframes bsh{to{transform:translateX(100%)}}
+::-webkit-scrollbar{width:8px;height:8px}::-webkit-scrollbar-thumb{background:var(--ln);border-radius:8px}
+#toast{animation:tst .35s cubic-bezier(.2,1.3,.4,1)}@keyframes tst{from{transform:translateX(-50%) translateY(30px);opacity:0}}
+.ov.on .box{animation:mpop .3s cubic-bezier(.2,1.3,.4,1)}@keyframes mpop{from{transform:scale(.88);opacity:0}}
+body #ttl .tl b{text-shadow:0 0 12px color-mix(in srgb,var(--gold) 45%,transparent)}
+#vm::before{content:'';position:absolute;left:0;right:0;top:0;height:calc(var(--mh,60vh) + 14px);border-radius:16px;box-shadow:inset 0 0 60px #0006;pointer-events:none;z-index:5}
+#cmp{position:absolute;left:12px;top:12px;z-index:6;width:44px;height:44px;border-radius:50%;background:var(--h1);border:1px solid var(--gold);display:grid;place-items:center;font:700 13px/1 Prompt,sans-serif;color:var(--gold);text-align:center;animation:cmpa 6s ease-in-out infinite alternate;pointer-events:none}@keyframes cmpa{to{transform:rotate(12deg)}}
+body #mapw{background-image:linear-gradient(#ffffff0a 1px,#0000 1px),linear-gradient(90deg,#ffffff0a 1px,#0000 1px),radial-gradient(circle at 50% 40%,var(--map1),var(--map2));background-size:32px 32px,32px 32px,100% 100%}
+.sp2{position:absolute;pointer-events:none;font-size:16px;animation:spk .8s ease-out forwards;z-index:7}@keyframes spk{to{transform:translateY(-30px) scale(1.4);opacity:0}}
+#nws{-webkit-mask-image:linear-gradient(90deg,#0000,#000 8%,#000 92%,#0000);mask-image:linear-gradient(90deg,#0000,#000 8%,#000 92%,#0000)}
+body.sd header{box-shadow:0 10px 30px #000c}
+::selection{background:var(--gold);color:#111}
+button:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+input[type=range]{height:6px;border-radius:6px;filter:drop-shadow(0 0 3px var(--gold))}
+button.g{position:relative;overflow:hidden}button.g::after{content:'';position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(90deg,#0000,#fff6,#0000);transform:skewX(-20deg);animation:gsh 3.5s infinite;pointer-events:none}@keyframes gsh{to{left:130%}}
+#stars{position:fixed;inset:0;z-index:-1;opacity:0;transition:opacity 2s;pointer-events:none}body[data-tod=night] #stars{opacity:1}#stars i{position:absolute;width:2px;height:2px;border-radius:50%;background:#fff;animation:twk 2.5s ease-in-out infinite alternate}@keyframes twk{to{opacity:.15}}
+body::before{content:'';position:fixed;top:-120px;right:-80px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,var(--gold) 0,#0000 70%);opacity:.18;pointer-events:none;z-index:-1;transition:opacity 2s}
+.cd:hover{transform:translateY(-2px);transition:transform .2s}
+.chip{transition:transform .2s}.chip:hover{transform:translateY(-3px)}
+#asN{animation:bpl 1.6s infinite}@keyframes bpl{50%{box-shadow:0 0 0 4px #e8b04a44}}
+nav button:active{transform:scale(.9)}
+#list .row{border-left:3px solid var(--gold)}
+html{scroll-behavior:smooth}button{-webkit-tap-highlight-color:transparent}`;
+document.head.appendChild(st);
+let f='';for(let i=0;i<14;i++)f+=`<i class="ff" style="left:${Math.random()*100}%;top:${20+Math.random()*75}%;animation-delay:-${Math.random()*14}s;animation-duration:${10+Math.random()*10}s"></i>`;
+let t='';for(let i=0;i<45;i++)t+=`<i style="left:${Math.random()*100}%;top:${Math.random()*70}%;animation-delay:-${Math.random()*2.5}s"></i>`;
+document.body.insertAdjacentHTML('beforeend',f+'<div id="stars">'+t+'</div>');
+$('vm').insertAdjacentHTML('beforeend','<div id="cmp">N<br>⬆</div>');
+document.addEventListener('click',e=>{if(e.target.closest&&e.target.closest('button')){const r=document.createElement('span');r.className='rp';r.style.left=e.clientX+'px';r.style.top=e.clientY+'px';document.body.appendChild(r);setTimeout(()=>r.remove(),600)}});
+$('mapw').addEventListener('click',e=>{const b=$('vm').getBoundingClientRect(),p=document.createElement('span');p.className='sp2';p.textContent='✨';p.style.left=(e.clientX-b.left-8)+'px';p.style.top=(e.clientY-b.top-8)+'px';$('vm').appendChild(p);setTimeout(()=>p.remove(),800)});
+addEventListener('scroll',()=>document.body.classList.toggle('sd',scrollY>4),{passive:true});
+})();
 </script>
 </body></html>
