@@ -862,5 +862,81 @@ function ambH(){const mp=(ns,d,ic,fs,b)=>{ns=ns.concat(ns.slice(0,-1).reverse())
 const _bm=buildMap;buildMap=function(){_bm();$('mk').insertAdjacentHTML('beforebegin','<g id="amb" pointer-events="none">'+ambH()+'</g><g id="fac" pointer-events="none"></g>');gvMap()};
 const _dm=drawMk;drawMk=function(){_dm();gvMap()};
 fit();
+ /* ===== PATCH v3: เรือในทะเล + ระบบท่องเที่ยว ===== */
+const XY=(a,b)=>X(a).toFixed(1)+','+Y(b).toFixed(1);
+function ambH(){
+ const mp=(ns,d,ic,fs,b)=>{ns=ns.concat(ns.slice(0,-1).reverse());const q=ns.map(ix).filter(i=>i>=0).map(i=>X(PV[i].x).toFixed(1)+','+Y(PV[i].y).toFixed(1));return `<text font-size="${fs}" class="ambt"><animateMotion dur="${d}s" begin="-${b||0}s" repeatCount="indefinite" path="M${q.join(' L')}"/>${ic}</text>`};
+ const pp=(cs,d,ic,fs,b)=>{cs=cs.concat(cs.slice(0,-1).reverse());return `<text font-size="${fs}" class="ambt"><animateMotion dur="${d}s" begin="-${b||0}s" repeatCount="indefinite" path="M${cs.map(c=>XY(c[0],c[1])).join(' L')}"/>${ic}</text>`};
+ const cd=(y1,y2,d,b,s)=>`<text font-size="${s}" opacity=".45" class="ambt"><animateMotion dur="${d}s" begin="-${b}s" repeatCount="indefinite" path="M-40,${y1} L490,${y2}"/>☁️</text>`;
+ return mp(['นครสวรรณ์','ชัยนาถ','สิงห์บูรี','อ่างทอน','พระนครศรีอยุธะยา','ปทุมธาณี','นนทบูรี','กรุงเทบ','สมุทรปาการ'],40,'⛴️',12)
+ +mp(['กรุงเทบ','พระนครศรีอยุธะยา','ลพบูรี','นครสวรรณ์','พิจิตต','พิษณุโลง','แพร้','ลำภาง','เชียงมะ'],70,'🚆',12)
+ +mp(['กรุงเทบ','เพชรบูรี','ประจวบคีรีขัน','ชุมพน','สุราษฎร์ธาณี','ตะรัง','สงขลี'],80,'🚆',12)
+ +mp(['กรุงเทบ','เชียงมะ'],26,'✈️',13)+mp(['กรุงเทบ','ภูเก็จ'],30,'✈️',13)+mp(['กรุงเทบ','ขอนแก้น','อุดรธาณี'],34,'✈️',12)
+ +mp(['กรุงเทบ','นครราชสีนา','ขอนแก้น','อุดรธาณี'],55,'🚚',11)+mp(['กรุงเทบ','กาญจนบูรี'],30,'🚚',11)
+ +pp([[100.55,13.4],[100.62,13.1],[100.6,12.6],[101.0,12.4],[101.6,12.3]],45,'🚢',13)
+ +pp([[100.3,10.2],[100.2,9.4],[100.4,8.6]],28,'🛥️',11)
+ +pp([[98.1,8.6],[98.1,7.8],[98.4,7.5]],26,'⛵',11,8)
+ +pp([[101.4,8.0],[101.1,7.6],[101.5,7.3]],32,'🎣',11)
+ +cd(70,110,80,0,26)+cd(420,380,110,40,30)+cd(600,640,95,20,24)}
+
+/* ===== ระบบบริหารการท่องเที่ยว ===== */
+const DS=[['bkk','พระบรมมหาราชวัง','🛕','กรุงเทบ',9],['hkt','หาดป่าตอง ภูเก็ต','🏝️','ภูเก็จ',9],['cnx','ดอยสุเทพ เชียงใหม่','⛰️','เชียงมะ',7],['kbi','อ่าวนาง กระบี่','🌴','กระบี้',6],['usm','เกาะสมุย','🥥','สุราษฎร์ธาณี',6],['pty','พัทยา','🎡','ชลบูรี',7],['cei','วัดร่องขุ่น เชียงราย','🏯','เชียงราวี',4],['ayt','อุทยานประวัติศาสตร์อยุธยา','🏛️','พระนครศรีอยุธะยา',5],['hua','หัวหิน','🏖️','ประจวบคีรีขัน',4],['kan','สะพานข้ามแม่น้ำแคว','🌉','กาญจนบูรี',4],['pha','อ่าวพังงา','🛶','พังงะ',5],['trt','เกาะช้าง','🐘','ตราต',3],['sko','อุทยานประวัติศาสตร์สุโขทัย','🗿','สุโขไทย',4],['kyi','เขาใหญ่','🌳','นครราชสีนา',4],['mhs','ปาย แม่ฮ่องสอน','🌄','แม่ฮ่องสน',3],['hdy','หาดใหญ่ สงขลา','🛍️','สงขลี',3]];
+const MK=[['จีน','🇨🇳',.30],['ยุโรป/อเมริกา','🇪🇺',.20],['ญี่ปุ่น/เกาหลี','🇯🇵',.15],['ในประเทศ','🏠',.20],['อาเซียน','🌏',.15]];
+const TCP=[['เทศกาลสงกรานต์นานาชาติ','💦',10,1.25,60,80],['Amazing Thailand Roadshow','🌏',15,1.3,80,100],['มหกรรมกีฬาระดับโลก','🏟️',30,1.45,100,160],['เที่ยวเมืองรองลดภาษี','🎫',12,1.2,60,70]];
+const VS=['เข้มงวด','ปกติ','ฟรีวีซ่า'];
+const trS=()=>S.tr||(S.tr={lv:{},mk:[0,0,0,0,0],visa:1,fee:0,rm:0,pol:0,eco:0,sus:80,sat:55,bt:0,bm:1,cd:{},arr:0,acc:0});
+function trCalc(){const T=trS();let A=0,mf=0;DS.forEach(d=>A+=d[4]*(1+.6*(T.lv[d[0]]||0)));MK.forEach((m,i)=>mf+=m[2]*(1+.35*(T.mk[i]||0)));
+ const fl=S.ev.filter(e=>e.k=='f').length,air=((S.gv&&S.gv.f&&S.gv.f.air)||[]).length,port=((S.gv&&S.gv.f&&S.gv.f.port)||[]).length;
+ const D=A*.5*mf*[.8,1,1.15][T.visa]*(.6+S.sec/250+.08*T.pol)*(1-S.cor/300)*(1-Math.max(0,S.en.ten-40)/150)*(S.wx>=3?.85:1)*Math.max(.7,1-.03*fl)*(T.sus<30?.8:1)*(.7+T.sat/170)*(T.bt>0?T.bm:1)*(1-T.fee*.03);
+ const cap=40+35*T.rm+6*air+4*port;return{D,cap,V:Math.min(D,cap)}}
+function trT(){if(!S||S.over||B||window.EL)return;const T=trS(),c=trCalc(),r=c.V*.02*(1+T.fee*.06);
+ S.cash+=r;T.acc+=r;S.G=cl(S.G+c.V*.00015,40,220);T.arr=c.V;
+ T.sus=cl(T.sus-Math.max(0,c.V-30)*.0012*(1-.25*T.eco)+.02+.01*(S.lv.env||0),0,100);
+ T.sat=cl(T.sat+((50+S.sec*.25-S.cor*.2+(c.D>c.cap?-15:10)+8*T.pol+(T.sus<30?-10:0))-T.sat)*.02,0,100);if(T.bt>0)T.bt--}
+const _t3=tick;tick=function(){_t3();trT()};
+const _s3=settle;settle=function(){const T=trS();let u=T.rm*.8+T.pol*.7+T.eco*.6;DS.forEach(d=>u+=.5*(T.lv[d[0]]||0));T.mk.forEach(l=>u+=.6*l);
+ S.cash-=u;S.led.unshift('🏝️ ท่องเที่ยว รับ +'+T.acc.toFixed(1)+' ค่าดำเนินงาน −'+u.toFixed(1));T.acc=0;_s3()};
+const _nd=newDay;newDay=function(){_nd();const T=trS(),H=S.hs;if(H){(H.tour=H.tour||[]).push(R(T.arr));if(H.tour.length>60)H.tour.shift()}trMap();if($('vo').classList.contains('on'))trH()};
+function trU(k,i){const T=trS();let l,b;if(k=='d'){l=T.lv[i]||0;b=15}else if(k=='m'){l=T.mk[i];b=12}else{l=T[k];b=k=='rm'?25:k=='pol'?15:20}
+ if(l>=3)return toast('ระดับสูงสุดแล้ว');const c=b*(l+1);if(S.cash<c)return toast('เงินคลังไม่พอ (ต้อง '+c+')');S.cash-=c;
+ if(k=='d')T.lv[i]=l+1;else if(k=='m')T.mk[i]=l+1;else T[k]=l+1;snd('ok');toast('🏝️ ยกระดับสำเร็จ Lv '+(l+1));trMap();trH();hud()}
+function trV(v){trS().visa=v;snd('ok');toast('นโยบายวีซ่า: '+VS[v]);trH()}
+function trC(i){const T=trS(),c=TCP[i];if((T.cd[i]||0)>S.t)return toast('แคมเปญยังไม่พร้อม');if(S.cash<c[2])return toast('เงินคลังไม่พอ');S.cash-=c[2];T.bt=c[4];T.bm=c[3];T.cd[i]=S.t+c[5];snd('ok');toast(c[1]+' เริ่ม'+c[0]);trH();hud()}
+function trH(){if(!S)return;const T=trS(),c=trCalc(),bar=(v,col)=>`<div class="bar tall"><i style="width:${cl(v,0,100)}%;background:linear-gradient(90deg,${col}88,${col})"></i></div>`,ov=c.D>c.cap;
+ const lv=(l)=>'■'.repeat(l)+'□'.repeat(3-l);
+ $('vo').innerHTML=`<div class="cd"><h3>🏝️ ภาพรวมการท่องเที่ยว</h3>
+ <div class="cov"><span>นักท่องเที่ยว</span><b style="font-size:18px;color:var(--gold)">${(c.V*.1).toFixed(1)} ล้านคน/เดือน</b></div>
+ <label class="sl">ความต้องการเที่ยว / ความจุที่พัก <b>${R(c.D)} / ${R(c.cap)}</b></label>${bar(c.D/c.cap*50,ov?'#e0525a':'#3fbf8f')}<p class="hint" style="margin-top:4px">${ov?'⚠️ ที่พักไม่พอ นักท่องเที่ยวล้นเมือง ความพึงพอใจลดลง':'ที่พักรองรับได้เพียงพอ'}</p>
+ <label class="sl">ความพึงพอใจนักท่องเที่ยว <b>${R(T.sat)}</b></label>${bar(T.sat,'#c9a24a')}
+ <label class="sl">สิ่งแวดล้อมยั่งยืน <b>${R(T.sus)}</b></label>${bar(T.sus,'#3fbf8f')}
+ <p class="hint" style="margin-top:8px">รายได้ประมาณ ${(c.V*.2*(1+T.fee*.06)).toFixed(1)} พันล้าน/เดือน · ${WX[S.wx][1]} ${WX[S.wx][0]}${T.bt>0?' · 🎉 แคมเปญเหลือ '+T.bt+' วิ (×'+T.bm+')':''}</p></div>
+ <div class="cd"><h3>📜 นโยบายและโครงสร้างพื้นฐาน</h3><div class="sec-t">นโยบายวีซ่า</div><div class="gr">${VS.map((v,i)=>`<button class="ch" style="${T.visa==i?'border-color:var(--gold);color:var(--gold)':''}" onclick="trV(${i})">${v}</button>`).join('')}</div>
+ <label class="sl">ค่าธรรมเนียมท่องเที่ยว<b id="tfv">${T.fee}%</b><input type="range" min="0" max="10" step="1" value="${T.fee}" oninput="$('tfv').textContent=this.value+'%'" onchange="trS().fee=+this.value;trH()"></label><p class="hint">สูง: รายได้ต่อคนเพิ่ม แต่คนมาลดลง</p>
+ ${[['rm','🏨','ที่พักและโรงแรมมาตรฐาน','เพิ่มความจุนักท่องเที่ยว'],['pol','👮','ตำรวจท่องเที่ยว','ความปลอดภัยและความพึงพอใจ'],['eco','🌿','โครงการท่องเที่ยวยั่งยืน','ลดการเสื่อมของสิ่งแวดล้อม']].map(x=>`<button class="ln" onclick="trU('${x[0]}')"><span>${x[1]} ${x[2]} <small>${lv(T[x[0]])}</small><br><small>${x[3]}</small></span><b style="color:var(--gold)">${T[x[0]]>=3?'MAX':({rm:25,pol:15,eco:20})[x[0]]*(T[x[0]]+1)}</b></button>`).join('')}</div>
+ <div class="cd"><h3>🌍 การตลาดตามตลาดนักท่องเที่ยว</h3>${MK.map((m,i)=>`<button class="ln" onclick="trU('m',${i})"><span>${m[1]} ${m[0]} <small>${lv(T.mk[i])}</small><br><small>สัดส่วนตลาด ${R(m[2]*100)}%</small></span><b style="color:var(--gold)">${T.mk[i]>=3?'MAX':12*(T.mk[i]+1)}</b></button>`).join('')}</div>
+ <div class="cd"><h3>🎉 แคมเปญท่องเที่ยว</h3>${TCP.map((p,i)=>{const w=Math.max(0,(T.cd[i]||0)-S.t);return `<button class="ln" onclick="trC(${i})" ${w?'disabled style="opacity:.5"':''}><span>${p[1]} ${p[0]}<br><small>ดันนักท่องเที่ยว ×${p[3]} นาน ${p[4]} วิ</small></span><b style="color:var(--gold)">${w?w+' วิ':p[2]}</b></button>`}).join('')}</div>
+ <div class="cd"><h3>🗺️ แหล่งท่องเที่ยว ${DS.length} แห่ง</h3>${DS.map(d=>{const l=T.lv[d[0]]||0;return `<button class="ln" onclick="trU('d','${d[0]}')"><span>${d[2]} ${d[1]} <small>${lv(l)}</small><br><small>จังหวัด${d[3]} · ความน่าสนใจ ${d[4]}</small></span><b style="color:var(--gold)">${l>=3?'MAX':15*(l+1)}</b></button>`}).join('')}</div>`
+ +(S.hs&&S.hs.tour&&S.hs.tour.length>1?chart('📈 นักท่องเที่ยวย้อนหลัง',['tour'],['ดัชนี'],['#c9a24a']):'')}
+function trMap(){const f=$('trl');if(!f||!S)return;const T=trS(),c=trCalc();let h='';
+ DS.forEach(d=>{const i=ix(d[3]);if(i<0)return;const l=T.lv[d[0]]||0,x=X(PV[i].x),y=Y(PV[i].y);h+=`<circle class="pulse" cx="${x}" cy="${y}" r="${4+l*1.5}" fill="#c9a24a" opacity=".5"/><text class="a" x="${x-8}" y="${y-8}" font-size="${9+l*1.5}" text-anchor="middle" style="animation:bnc 2.4s infinite">${d[2]}</text>`});
+ const ap=[[100.5,13.75],[98.39,7.88],[98.98,18.79]];
+ for(let k=0;k<1+Math.floor(c.V/35);k++){const t=ap[k%3];h+=`<text font-size="11" class="ambt"><animateMotion dur="${14+k*3}s" begin="-${k*4}s" repeatCount="indefinite" path="M${k%2?'470,150':'-20,'+(300+k*90)} L${XY(t[0],t[1])}"/>✈️</text>`}
+ f.innerHTML=h}
+const _bm3=buildMap;buildMap=function(){_bm3();$('mk').insertAdjacentHTML('beforebegin','<g id="trl" pointer-events="none"></g>');trMap()};
+const _dm3=drawMk;drawMk=function(){_dm3();trMap()};
+$('vg').insertAdjacentHTML('afterend','<section class="v" id="vo"></section>');
+document.querySelector('nav').insertAdjacentHTML('beforeend','<button onclick="tab(\'vo\',this)">🏝️<br>ท่องเที่ยว</button>');
+const _rv3=rv;rv=function(v){_rv3(v);if(v=='vo')trH()};
+EV.push(
+C('ปัญหา','นักท่องเที่ยวต่างชาติถูกโก่งราคาที่ {P} ข่าวแพร่ในโซเชียล','ตั้งตำรวจท่องเที่ยวและกำหนดราคามาตรฐาน','ปล่อยเป็นเรื่องของเอกชน','ปิดข่าว'),
+C('เตือน','⚠ คลื่นสูงและธงแดงที่หาด {P} นักท่องเที่ยวยังลงเล่นน้ำ','ปิดหาดชั่วคราว ประกาศเตือนหลายภาษา','ปล่อยให้เล่นน้ำต่อ','ปิดข่าว'),
+C('ปัญหา','ปะการังที่ {P} ฟอกขาวจากนักท่องเที่ยวหนาแน่น','จำกัดจำนวนนักท่องเที่ยวและฟื้นฟูแนวปะการัง','เพิ่มทัวร์ดำน้ำทันที','ไม่ทำอะไร'),
+C('ร้องเรียน','ผู้ประกอบการโรงแรมที่ {P} ร้องขอมาตรการช่วยช่วงโลว์ซีซัน','ลดค่าธรรมเนียมและจัดแคมเปญกระตุ้นการเที่ยว','ปฏิเสธทุกข้อเสนอ','ขึ้นภาษีโรงแรม'),
+C('โกง','ทัวร์ศูนย์เหรียญที่ {P} หลอกนักท่องเที่ยวต่างชาติ','ตรวจสอบ เพิกถอนใบอนุญาตและดำเนินคดี','ตั้งกรรมการศึกษาไม่มีกำหนด','ปิดข่าว'),
+C('สุขภาพ','นักท่องเที่ยวป่วยเป็นกลุ่มที่ {P} จากอาหารปนเปื้อน','ตรวจสอบร้านอาหารและดูแลผู้ป่วยทันที','ให้ร้านจัดการเอง','ปิดข่าว'),
+T('ปัญหา','แหล่งท่องเที่ยว {P} ขยะล้นช่วงเทศกาล ท่านสั่งอย่างไร','คัดแยก,เก็บ,รีไซเคิล,ค่าธรรมเนียม,จำกัด,ทำความสะอาด'),
+A('การเงิน','เสนอวีซ่าฟรีนักท่องเที่ยวจีนและอินเดียชั่วคราว ประเมินผลแล้วคุ้มค่า',0),
+A('โกง','เสนอสัมปทานโรงแรมริมหาดอนุรักษ์ให้เอกชนรายเดียวโดยไม่ประมูล',1));
+fit();
 </script>
 </body></html>
