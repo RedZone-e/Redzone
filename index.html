@@ -938,5 +938,100 @@ T('ปัญหา','แหล่งท่องเที่ยว {P} ขยะ
 A('การเงิน','เสนอวีซ่าฟรีนักท่องเที่ยวจีนและอินเดียชั่วคราว ประเมินผลแล้วคุ้มค่า',0),
 A('โกง','เสนอสัมปทานโรงแรมริมหาดอนุรักษ์ให้เอกชนรายเดียวโดยไม่ประมูล',1));
 fit();
+ /* ===== PATCH v4: แต่งตัวนายกฯ + ทุบโต๊ะ + การศึกษา + แรงงาน ===== */
+document.head.insertAdjacentHTML('beforeend',`<style>
+.ar{display:flex;align-items:center;gap:4px;font-size:12px;margin:3px 0}.ar span{width:118px;flex:none;line-height:1.2}.ar span b{display:block;color:var(--gold);font-size:11px}
+.ar button{background:var(--p2);color:var(--fg);border:1px solid var(--ln);border-radius:8px;width:28px;height:28px;cursor:pointer}.ar input{flex:1;accent-color:var(--gold)}
+#avp{width:120px;margin:4px auto;background:linear-gradient(#1b2640,#0e1729);border:2px solid var(--gold);border-radius:14px}#avp svg{width:100%;display:block}
+.avt svg{width:40px;height:40px;border-radius:50%;background:var(--p2);border:2px solid var(--gold);display:block}.avt{margin-right:8px}
+.slw{position:relative;z-index:2;margin-top:6px}.slx{position:relative;width:190px}.slx svg{width:190px;display:block;animation:jolt 1.2s infinite}
+.slx .arm{animation:slam 1.2s infinite}
+.dsk{position:absolute;left:-34px;right:-34px;top:76%;height:64px;background:linear-gradient(#8b5a2b,#5a3512);border-radius:8px;box-shadow:0 6px 0 #3b2208;animation:dsk 1.2s infinite}
+.pang{position:absolute;right:-64px;top:36%;font:900 36px Prompt,sans-serif;color:#fff;text-shadow:0 3px 0 #b91c1c;opacity:0;animation:pg 1.2s infinite}
+@keyframes slam{0%,35%{transform:rotate(-150deg)}45%{transform:rotate(-15deg)}55%{transform:rotate(-30deg)}70%,100%{transform:rotate(-150deg)}}
+@keyframes jolt{45%,52%{transform:translateY(5px)}}@keyframes dsk{45%,52%{transform:translateY(6px) rotate(.6deg)}}
+@keyframes pg{44%{opacity:0;transform:scale(.3)}50%{opacity:1;transform:scale(1.3)}78%{opacity:0}}
+</style>`);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+/* ---- ตัวละคร: ชุด 100 (10 แบบ×10 สี) หน้า 100 (10 ทรง×10 ลักษณะ) รูปร่าง 100 (10×10) สีผิว 100 สีผม 100 ---- */
+const OCL=['#1e3a5f','#111827','#7f1d1d','#14532d','#4c1d95','#78350f','#0f766e','#9a3412','#374151','#be185d'],
+CN=['น้ำเงิน','ดำ','แดงเลือดหมู','เขียวเข้ม','ม่วง','น้ำตาล','เขียวมรกต','ส้มอิฐ','เทา','ชมพู'],
+ON=['สูทผูกไทด์','ชุดข้าราชการ','เชิ้ตพับแขน','ผ้าไหมไทย','สูทสองแถว','ชุดทหาร','ฮู้ดดี้','โปโลพรรค','ครุยพิธี','ราชปะแตน'],
+FN2=['หน้าไข่','หน้ากลม','หน้ายาว','หน้าเหลี่ยม','หน้าเรียว','หน้าใหญ่','หน้าคม','หน้าเล็ก','หน้าเต็ม','หน้าสมส่วน'],
+EX=['ตากลม','ตาโต','ตาเรียว','ตายิ้ม','คิ้วเข้ม'],HN=['ล้าน','สั้น','แสกข้าง','ยาว','มวย','หยิก','โมฮอว์ก','บ็อบ','ตั้ง','ทรงนักเรียน'];
+const SK=i=>`hsl(${28-i*.12|0},${52-i*.2|0}%,${88-i*.66}%)`,HC=i=>i<40?`hsl(25,${15+i*.8|0}%,${6+i*.8|0}%)`:i<70?`hsl(${i},${10+(i-40)*2}%,${45+(i-40)*1.1|0}%)`:`hsl(${(i-70)*12},75%,52%)`;
+function av(a,vb){const sk=SK(a.s),hc=HC(a.h),st=a.o%10,oc=OCL[a.o/10|0],w=26+(a.b%10)*2.2,sy=78+(a.b/10|0)*.9,fs=a.f%10,ft=a.f/10|0,rx=[24,26,28,30,25,27,29,23,31,26][fs],ry=[30,28,32,27,34,31,29,33,27,30][fs],cy=sy-32,x1=60-w,x2=60+w,g='#d4a94a',t=cy-ry,ey=cy-2,ex=rx*.42,hs=a.hs;
+ const O=[`<path d="M60,${sy+2}L51,${sy+12}L60,${sy+38}L69,${sy+12}Z" fill="#fff"/><path d="M60,${sy+11}l-3.5,5 3.5,22 3.5,-22z" fill="#b91c1c"/>`,
+ [0,1,2,3].map(i=>`<circle cx="60" cy="${sy+12+i*10}" r="2" fill="${g}"/>`).join('')+`<rect x="${x1+8}" y="${sy+16}" width="10" height="9" fill="none" stroke="#fff8"/>`,
+ `<path d="M60,${sy+2}L50,${sy+14}L60,${sy+22}L70,${sy+14}Z" fill="${sk}"/>`,
+ `<path d="M${x1+3},${sy+10}Q60,${sy+30} ${x2-3},${sy+10}" stroke="${g}" stroke-width="3" fill="none"/>`+[0,1,2].map(i=>`<circle cx="${x1+12+i*14}" cy="${sy+40}" r="3" fill="${g}"/>`).join(''),
+ `<path d="M60,${sy+2}L48,${sy+20}L60,${sy+50}L72,${sy+20}Z" fill="#0004"/>`+[0,1].map(i=>[-7,7].map(d=>`<circle cx="${60+d}" cy="${sy+26+i*12}" r="1.8" fill="${g}"/>`).join('')).join(''),
+ `<rect x="${x1-1}" y="${sy+1}" width="16" height="5" fill="${g}"/><rect x="${x2-15}" y="${sy+1}" width="16" height="5" fill="${g}"/>`+[0,1,2].map(i=>`<circle cx="${x1+10+i*5}" cy="${sy+22}" r="2" fill="#f5c542"/>`).join(''),
+ `<circle cx="60" cy="${sy}" r="${w*.55}" fill="${oc}" stroke="#0005"/><path d="M55,${sy+8}v20M65,${sy+8}v20" stroke="#fff" stroke-width="1.5"/>`,
+ `<path d="M52,${sy+1}L60,${sy+10}L68,${sy+1}" fill="#fff"/><circle cx="${x1+12}" cy="${sy+24}" r="5" fill="#fbbf24"/>`,
+ `<path d="M${x1+6},${sy+6}L${x2-8},${sy+60}" stroke="#facc15" stroke-width="6"/><path d="M${x1+2},170L${x1+4},${sy+6}M${x2-2},170L${x2-4},${sy+6}" stroke="${g}" stroke-width="3"/>`,
+ `<rect x="55" y="${sy}" width="10" height="8" fill="${oc}" stroke="#fff6"/>`+[0,1,2,3,4].map(i=>`<circle cx="60" cy="${sy+12+i*9}" r="1.8" fill="${g}"/>`).join('')][st];
+ const base=`<path d="M${60-rx-1},${cy-4}Q${60-rx},${t-8} 60,${t-6}Q${60+rx},${t-8} ${60+rx+1},${cy-4}Q60,${t+9} ${60-rx-1},${cy-4}Z" fill="${hc}"/>`;
+ const back=hs==3?`<path d="M${60-rx-4},${cy-6}L${60-rx-8},${sy+30}L${60+rx+8},${sy+30}L${60+rx+4},${cy-6}Z" fill="${hc}"/>`:hs==7?`<rect x="${60-rx-4}" y="${t}" width="${rx*2+8}" height="${ry+16}" rx="10" fill="${hc}"/>`:'';
+ const front=[``,base,base+`<path d="M60,${t-5}Q52,${t+8} 46,${t+14}" stroke="#0006" fill="none"/>`,base,base+`<circle cx="60" cy="${t-10}" r="9" fill="${hc}"/>`,[-18,-9,0,9,18].map(d=>`<circle cx="${60+d*rx/24}" cy="${t+1+Math.abs(d)/6}" r="8" fill="${hc}"/>`).join(''),`<rect x="55" y="${t-14}" width="10" height="18" rx="4" fill="${hc}"/>`,base,`<path d="M${60-rx},${cy-6}L${60-rx+4},${t-12}L${60-8},${t-2}L60,${t-16}L${60+8},${t-2}L${60+rx-4},${t-12}L${60+rx},${cy-6}Z" fill="${hc}"/>`,base+`<rect x="${60-rx}" y="${t-3}" width="${rx*2}" height="6" fill="${hc}"/>`][hs];
+ const E=[-1,1],eyes=[E.map(d=>`<circle cx="${60+d*ex}" cy="${ey}" r="2.2" fill="#111"/>`),E.map(d=>`<ellipse cx="${60+d*ex}" cy="${ey}" rx="4" ry="4.5" fill="#fff"/><circle cx="${60+d*ex}" cy="${ey}" r="2.4" fill="#111"/>`),E.map(d=>`<path d="M${60+d*ex-4},${ey}h8" stroke="#111" stroke-width="2"/>`),E.map(d=>`<path d="M${60+d*ex-4},${ey+1}q4,-5 8,0" stroke="#111" stroke-width="2" fill="none"/>`),E.map(d=>`<circle cx="${60+d*ex}" cy="${ey}" r="2.2" fill="#111"/><path d="M${60+d*ex-4*d},${ey-7}l${8*d},3" stroke="#111" stroke-width="2.4"/>`)][ft%5].join('');
+ const mo=ft<5?`<path d="M52,${cy+ry*.5}q8,7 16,0" stroke="#7f1d1d" stroke-width="2" fill="none"/>`:`<path d="M53,${cy+ry*.55}h14" stroke="#7f1d1d" stroke-width="2"/>`;
+ return `<svg viewBox="${vb||'0 0 120 170'}" xmlns="http://www.w3.org/2000/svg">${back}<rect x="${x1-9}" y="${sy}" width="11" height="52" rx="5" fill="${oc}"/><circle cx="${x1-3.5}" cy="${sy+54}" r="6" fill="${sk}"/>
+<path d="M${x1},170L${x1+4},${sy+4}Q60,${sy-8} ${x2-4},${sy+4}L${x2},170Z" fill="${oc}"/><rect x="54" y="${cy+ry-6}" width="12" height="${sy-cy-ry+10}" fill="${sk}"/>${O}
+<g class="arm" style="transform-origin:${x2-4}px ${sy+6}px"><rect x="${x2-2}" y="${sy}" width="11" height="52" rx="5" fill="${oc}"/><circle cx="${x2+3.5}" cy="${sy+54}" r="6.5" fill="${sk}"/></g>
+<circle cx="${60-rx}" cy="${cy}" r="5" fill="${sk}"/><circle cx="${60+rx}" cy="${cy}" r="5" fill="${sk}"/><ellipse cx="60" cy="${cy}" rx="${rx}" ry="${ry}" fill="${sk}" stroke="#0003"/>${eyes}<path d="M60,${cy+2}v8" stroke="#0004"/>${mo}${front}</svg>`}
+let AV=(()=>{try{return JSON.parse(localStorage.getItem('pmAv'))}catch(e){}})()||{o:0,f:0,b:45,s:40,h:10,hs:1};
+const ATT=[['o','ชุด'],['f','หน้าตา'],['b','รูปร่าง'],['s','สีผิว'],['h','สีผม'],['hs','ทรงผม']];
+const avLb=(k,v)=>k=='o'?ON[v%10]+' · '+CN[v/10|0]:k=='f'?FN2[v%10]+' · '+EX[(v/10|0)%5]:k=='b'?'สูง '+(v/10|0)+' · กว้าง '+v%10:k=='hs'?HN[v]:'#'+(v+1);
+function avR(){$('avp').innerHTML=av(AV);ATT.forEach(a=>{$('al_'+a[0]).textContent=avLb(a[0],AV[a[0]]);$('ai_'+a[0]).value=AV[a[0]]})}
+function avS(k,d,v){const m=k=='hs'?10:100;AV[k]=((v!=null?+v:AV[k]+d)%m+m)%m;avR()}
+function avRnd(){ATT.forEach(a=>AV[a[0]]=Math.random()*(a[0]=='hs'?10:100)|0);avR()}
+$('st').querySelector('label').insertAdjacentHTML('beforebegin',`<div id="avp"></div><div style="text-align:center;margin-bottom:6px"><button class="ch" onclick="avRnd()">🎲 สุ่มหน้าตา</button></div>`+ATT.map(a=>`<div class="ar"><span>${a[1]}<b id="al_${a[0]}"></b></span><button onclick="avS('${a[0]}',-1)">◀</button><input type="range" id="ai_${a[0]}" min="0" max="${a[0]=='hs'?9:99}" oninput="avS('${a[0]}',0,this.value)"><button onclick="avS('${a[0]}',1)">▶</button></div>`).join(''));
+$('pn').parentElement.insertAdjacentHTML('afterend',`<label>คำขวัญประจำนายกฯ<input type="text" id="sg" maxlength="40" placeholder="ทำเพื่อชาติ" value="${esc(AV.sg||'')}"></label>`);
+avR();
+const _st5=start;start=function(){ac();AV.sg=($('sg').value||'').trim().slice(0,40)||'ทำเพื่อชาติ';try{localStorage.setItem('pmAv',JSON.stringify(AV))}catch(e){}_st5();S.av=Object.assign({},AV);S.sg=AV.sg;slam()};
+function slam(){const o=$('el');if(!o)return;o.querySelector('.pm').outerHTML=`<div class="slw"><div class="slx">${av(S.av)}<div class="dsk"></div><b class="pang">ปัง!</b></div></div>`;
+ o.querySelector('.sub2').innerHTML=esc(pn)+' นายกรัฐมนตรีแห่ง'+esc(cn)+'<br>“'+esc(S.sg)+'”';
+ setTimeout(function L(){if(!$('el'))return;noise(.3,260,.7);tone(70,.35,'sine',.5,0,35);shake();setTimeout(L,1200)},600)}
+const _h5=hud;hud=function(){_h5();if(S&&S.av)$('ttl').insertAdjacentHTML('afterbegin','<span class="avt">'+av(S.av,'26 0 68 78')+'</span>')};
+
+/* ---- ระบบการศึกษา + แรงงาน ---- */
+const CUR=[['stem','วิทยาศาสตร์และเทคโนโลยี (STEM)','🔬'],['voc','อาชีวศึกษาและทวิภาคี','🛠️'],['lang','ภาษาและดิจิทัล','💻'],['early','ปฐมวัยและการอ่านออกเขียนได้','📖'],['tch','พัฒนาครูและมาตรฐานโรงเรียน','👩‍🏫']];
+const LP=[['jc','ศูนย์จัดหางานแห่งชาติ','🧑‍💼','ลดอัตราว่างงาน'],['ins','ประกันการว่างงาน','🛡️','ประคองความนิยมเมื่อคนตกงาน'],['saf','ความปลอดภัยแรงงาน','🦺','ความนิยมเพิ่มต่อเนื่อง'],['law','ปฏิรูปกฎหมายแรงงาน','⚖️','ลดแรงกดดันจากสหภาพ']];
+const edS=()=>S.edu||(S.edu={lit:94,sk:25,cu:{},sch:2}),laS=()=>S.lab||(S.lab={u:4,w:350,uni:30,lv:{}});
+const fc=id=>((S.gv&&S.gv.f&&S.gv.f[id])||[]).length,fair=()=>340+(S.G-100)*.5;
+function hrT(){if(!S||S.over||B||window.EL)return;const e=edS(),l=laS(),g=k=>e.cu[k]||0,p=k=>l.lv[k]||0;
+ e.lit=cl(e.lit+.0012*(g('early')+g('tch'))+.0004*fc('sch')+e.sch*.0003+(S.sp.wel-5)*.0003-.0006,50,100);
+ e.sk=cl(e.sk+.0025*(.5*g('stem')+.7*g('voc')+.4*g('lang')+.3*g('tch'))+.0012*fc('uni')+e.sch*.0004-.0012-(S.cor>60?.002:0),5,90);
+ S.G=cl(S.G+(e.sk-25)*.0006+(e.lit-90)*.0003-(l.w-fair())*.0002-(l.u-4)*.001,40,220);
+ S.ap=cl(S.ap+(e.lit-90)*.0004+(l.w-fair())*.0002-Math.max(0,l.u-5)*.0025+p('ins')*(l.u>5?.01:0)+p('saf')*.006,0,100);
+ const tg=cl(3.5+(l.w-fair())*.03-(e.sk-25)*.03-.5*p('jc')+(S.cash<0?1.5:0)+(S.en.ten>65?.8:0),1,20);l.u+=(tg-l.u)*.01;
+ l.uni=cl(l.uni+(l.w<fair()?.03:-.015)-p('law')*.005,0,100)}
+const _t5=tick;tick=function(){_t5();hrT()};
+const _s5=settle;settle=function(){const e=edS(),l=laS();let u=e.sch*.5;CUR.forEach(c=>u+=.5*(e.cu[c[0]]||0));LP.forEach(c=>u+=.6*(l.lv[c[0]]||0));
+ S.cash-=u;S.led.unshift('🎓 การศึกษาและแรงงาน −'+u.toFixed(1));_s5()};
+const _nd5=newDay;newDay=function(){_nd5();const l=laS();
+ if(l.uni>55&&(l.u>6||l.w<fair()-15)&&Math.random()<.35&&S.ev.length<12&&!S.ev.some(x=>x.lab)){const i=Math.random()*PV.length|0,r=[0,1,2].sort(()=>Math.random()-.5),o0=['เปิดเจรจาปรับค่าแรงและสวัสดิการ','สลายการชุมนุมด้วยกำลัง','ปล่อยไว้ไม่สนใจ'];
+  S.ev.push({id:++S.id,c:'ร้องเรียน',k:'c',q:'สหภาพแรงงานที่ '+PV[i].n+' นัดหยุดงานประท้วงค่าแรงและการเลิกจ้าง',o:r.map(x=>o0[x]),a:r.indexOf(0),pi:i,lab:1,life:60,max:60});snd('ร้องเรียน');drawMk()}
+ if($('vk').classList.contains('on'))hrH()};
+const _rs5=resolve;resolve=function(e,ok,msg,ai,late){_rs5(e,ok,msg,ai,late);if(e&&e.lab&&S&&!S.over){const l=laS();l.uni=cl(l.uni+(ok?-15:10),0,100)}};
+function hrU(k,id){const e=edS(),l=laS(),o=k=='c'?e.cu:l.lv,v=o[id]||0,c=(k=='c'?20:18)*(v+1);if(v>=3)return toast('ระดับสูงสุดแล้ว');if(S.cash<c)return toast('เงินคลังไม่พอ (ต้อง '+c+')');S.cash-=c;o[id]=v+1;snd('ok');toast('ยกระดับสำเร็จ Lv '+(v+1));hrH();hud()}
+function hrH(){if(!S)return;const e=edS(),l=laS(),f=fair(),bar=(v,c)=>`<div class="bar tall"><i style="width:${cl(v,0,100)}%;background:linear-gradient(90deg,${c}88,${c})"></i></div>`,lv=n=>'■'.repeat(n)+'□'.repeat(3-n);
+ $('vk').innerHTML=`<div class="cd"><h3>🎓 การศึกษาและพัฒนาคน</h3>
+<label class="sl">อัตราการอ่านออกเขียนได้<b>${e.lit.toFixed(1)}%</b></label>${bar((e.lit-50)*2,'#3fbf8f')}
+<label class="sl">แรงงานทักษะสูง<b>${e.sk.toFixed(1)}%</b></label>${bar(e.sk,'#c9a24a')}
+<p class="hint" style="margin-top:6px">ผลระยะยาวต่อ GDP: ${((e.sk-25)*.0006+(e.lit-90)*.0003)*40>=0?'+':''}${(((e.sk-25)*.0006+(e.lit-90)*.0003)*40).toFixed(2)} ต่อวัน · โรงเรียน ${fc('sch')} · มหาวิทยาลัย ${fc('uni')} แห่ง (สร้างในแท็บ 🏢)</p>
+<label class="sl">งบทุนการศึกษาต่อรอบ<b id="edv">${e.sch}</b><input type="range" min="0" max="10" step="1" value="${e.sch}" oninput="$('edv').textContent=this.value" onchange="edS().sch=+this.value;hrH()"></label>
+<div class="sec-t">หลักสูตรและมาตรฐาน</div>${CUR.map(c=>{const v=e.cu[c[0]]||0;return `<button class="ln" onclick="hrU('c','${c[0]}')"><span>${c[2]} ${c[1]} <small>${lv(v)}</small></span><b style="color:var(--gold)">${v>=3?'MAX':20*(v+1)}</b></button>`}).join('')}</div>
+<div class="cd"><h3>👷 แรงงานและการจ้างงาน</h3>
+<label class="sl">อัตราว่างงาน<b style="color:${l.u>6?'var(--red)':'var(--jade)'}">${l.u.toFixed(1)}%</b></label>${bar(l.u*5,l.u>6?'#e0525a':'#3fbf8f')}
+<label class="sl">พลังสหภาพแรงงาน<b>${R(l.uni)}</b></label>${bar(l.uni,l.uni>55?'#e0525a':'#c9a24a')}
+<label class="sl">ค่าจ้างขั้นต่ำ (บาท/วัน) · ค่าจ้างที่เหมาะสม ${R(f)}<b id="lwv">${l.w}</b><input type="range" min="300" max="450" step="5" value="${l.w}" oninput="$('lwv').textContent=this.value" onchange="laS().w=+this.value;hrH();hud()"></label>
+<p class="hint" style="margin-top:6px">สูงกว่าเหมาะสม: ความนิยมเพิ่มแต่ว่างงานสูงและ GDP โตช้า · ต่ำกว่า: สหภาพเดือด เสี่ยงหยุดงานประท้วง</p>
+<div class="sec-t">โครงการแรงงาน</div>${LP.map(c=>{const v=l.lv[c[0]]||0;return `<button class="ln" onclick="hrU('p','${c[0]}')"><span>${c[2]} ${c[1]} <small>${lv(v)}</small><br><small>${c[3]}</small></span><b style="color:var(--gold)">${v>=3?'MAX':18*(v+1)}</b></button>`}).join('')}</div>`}
+$('vg').insertAdjacentHTML('afterend','<section class="v" id="vk"></section>');
+document.querySelector('nav').insertAdjacentHTML('beforeend','<button onclick="tab(\'vk\',this)">🎓<br>คน/แรงงาน</button>');
+const _rv5=rv;rv=function(v){_rv5(v);if(v=='vk')hrH()};
 </script>
 </body></html>
