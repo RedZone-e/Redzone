@@ -154,6 +154,42 @@ canvas#bc{box-shadow:0 0 24px #5ab0ff44}
 #nwt{display:inline-block;padding-left:100%;animation:mq 30s linear infinite}
 @keyframes mq{to{transform:translateX(-100%)}}
 #map polyline{pointer-events:none}
+/* ===== PATCH v2 ===== */
+:root{--bg:#0c1220;--pan:#141c2e;--p2:#1b2640;--ln:#2b3a5a;--fg:#e8ecf4;--mut:#9aa8c2;--gold:#c9a24a;--jade:#3fbf8f;--red:#e0525a;--s1:#0d1526;--s2:#080c16;--c1:#16203a;--c2:#111a2f}
+#en{z-index:100}#el{z-index:90}
+h3{border-left:3px solid var(--gold);padding-left:8px;letter-spacing:.2px}
+header{padding:8px 12px 6px;box-shadow:0 2px 12px #0008}
+#ttl{align-items:center;flex-wrap:wrap}
+#ttl .tl b{font:700 16px Prompt,sans-serif;display:block;line-height:1.2}
+#ttl .tl small{font:400 11px Sarabun;color:var(--mut)}
+#ttl .tr{display:flex;flex-wrap:wrap;gap:4px;justify-content:flex-end}
+#ttl .tr span{font:500 11px Sarabun;background:var(--p2);border:1px solid var(--ln);border-radius:20px;padding:2px 8px;color:var(--fg)}
+#hud{gap:6px;margin-top:8px}
+.sc{background:linear-gradient(160deg,var(--c1),var(--c2));border:1px solid var(--ln);border-radius:10px;padding:5px 7px}
+.sc .sh{display:flex;justify-content:space-between;align-items:center;font:600 10.5px Prompt,sans-serif;color:var(--mut);margin-bottom:4px;white-space:nowrap}
+.sc .sh b{font:700 15px Prompt,sans-serif}
+.bar.tall{height:8px;border-radius:6px;box-shadow:inset 0 1px 3px #0009}
+.bar.tall i{border-radius:6px;box-shadow:none}
+#mon{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;grid-template-columns:none;margin-top:6px}
+#mon .mt{flex:1 0 86px;padding:4px 8px;border-radius:10px}
+#mon .mt span{display:block;font-size:10px;color:var(--mut);white-space:nowrap}
+#mon .mt b{font-size:15px;line-height:1.2}
+#mon .mt small{font-size:9.5px;color:var(--mut)}
+#nws{font-size:11px;margin-top:5px}
+#mapw{overflow:hidden!important;max-height:none!important;height:var(--mh,60vh);display:flex;align-items:center;justify-content:center;border-radius:12px}
+#map{width:100%;height:100%}
+#map polygon{filter:none}
+.fa{font-family:system-ui}
+.fa-hos{animation:bnc 1.6s infinite}.fa-pol{animation:blk .9s infinite}.fa-fire{animation:wob 1s infinite}.fa-pwr{animation:blk 1.6s infinite}.fa-air{animation:bnc 2.2s infinite}.fa-port{animation:bnc 2.6s infinite}
+@keyframes blk{50%{opacity:.25}}
+.ambt{pointer-events:none;opacity:.95}
+button.g{background:linear-gradient(#d6b566,#b28a34);box-shadow:none;color:#1b1406}
+nav{border-top:1px solid var(--ln)}nav button{font-size:9.5px;padding:8px 1px}
+.hint{font-size:12px;color:var(--mut);margin:0 0 8px}
+select.gs{width:100%;padding:10px;border-radius:10px;border:1px solid var(--ln);background:var(--bg);color:var(--fg);font:inherit;margin:4px 0 8px}
+.cov{display:flex;align-items:center;gap:8px;font-size:12px;margin:5px 0}
+.cov span{width:150px;flex:none}.cov .bar{flex:1}
+.sec-t{font:600 12px Prompt,sans-serif;color:var(--gold);margin:12px 0 2px;letter-spacing:.4px}
 </style></head><body>
 <header><div id="ttl"></div><div id="hud"></div><div id="mon"></div><div id="nws"><span id="nwt"></span></div></header>
 <main>
@@ -772,5 +808,59 @@ function asTog(){if(!S.as.lv)return toast('ยังไม่ได้จ้า�
 function asUp(){const a=S.as,c=30*(a.lv+1);if(a.lv>=5)return;if(S.cash<c)return toast('เงินคลังไม่พอ (ต้อง '+c+')');S.cash-=c;a.lv++;a.cd=Math.min(a.cd,asCd());snd('ok');toast('🧑‍💼 ผู้ช่วย Lv '+a.lv);dvH();hud()}
 function asC(){const a=S.as,c=30*(a.lv+1);return `<div class="cd"><h3>🧑‍💼 ผู้ช่วยนายกรัฐมนตรี Lv ${a.lv}/5</h3><p style="font-size:12px;color:var(--mut);margin:0">${a.lv?`แก้ปัญหาอัตโนมัติทุก ${asCd()} วิ · พลาด ${R(asErr()*100)}% · ค่าจ้าง ${(.04*a.lv).toFixed(2)}/วิ`:'จ้างผู้ช่วยเพื่อแก้ปัญหาแทนท่าน (อัปเกรดแล้วเร็วขึ้นและพลาดน้อยลง)'}</p><button class="g" onclick="asTog()">${a.on?'⏸ หยุดผู้ช่วย':'▶ เรียกใช้ผู้ช่วย'}</button><button class="ln" onclick="asUp()"><span>${a.lv?'อัปเกรดผู้ช่วย':'จ้างผู้ช่วย'}</span><b style="color:var(--gold)">${a.lv>=5?'MAX':c}</b></button>${asB()}</div>`}
 (function(){const b=document.createElement('button');b.id='ab';b.style.cssText='position:fixed;right:10px;bottom:122px;z-index:7;background:var(--pan);color:var(--fg);border:1px solid var(--ln);border-radius:10px;padding:6px 9px;font-size:13px;cursor:pointer';b.textContent='🧑‍💼 ผู้ช่วย: ปิด';b.onclick=asTog;document.body.appendChild(b)})();
+/* ===== PATCH v2 ===== */
+function fit(){const h=document.querySelector('header'),n=document.querySelector('nav');document.documentElement.style.setProperty('--mh',Math.max(280,innerHeight-h.offsetHeight-n.offsetHeight-28)+'px')}
+addEventListener('resize',fit);
+function restart(){clearInterval(tm);if(B){clearInterval(B.iv);B=null}window.EL=0;const el=$('el');if(el)el.remove();
+ ['en','md','bt'].forEach(i=>$(i).classList.remove('on'));document.body.classList.remove('shk');$('toast').style.display='none';
+ try{$('ld').style.display=localStorage.getItem('pmSave')?'block':'none'}catch(e){}
+ if(S)S.over=1;tab('vm',document.querySelector('nav button'));$('st').classList.add('on')}
+$('en').querySelector('button').onclick=restart;
+const _end=end;end=function(r){const el=$('el');if(el)el.remove();window.EL=0;_end(r)};
+
+const SI={ap:'👥',sec:'🛡️',fr:'⚔️',pt:'🏛️'};
+hud=function(){envUpd();fit();
+ $('ttl').innerHTML=`<div class="tl"><b>🏛️ ${cn}</b><small>นายกรัฐมนตรี ${pn}</small></div><div class="tr"><span>📅 วันที่ ${S.day} · ${hhmm()} ${WX[S.wx][1]}</span><span>📒 รอบ ${Math.floor(S.t/10)+1}</span><span>❗ ผิด ${S.wr}/${LIM}</span><span>🔥 ${S.sk}</span><span>🏆 ${best()}</span></div>`;
+ $('hud').innerHTML=['ap','sec','fr','pt'].map(k=>{const v=cl(S[k],0,100),c=v>60?'#3fbf8f':v>30?'#d9a441':'#e0525a';return `<div class="sc"><div class="sh"><span>${SI[k]} ${NAME[k]}</span><b style="color:${c}">${R(v)}</b></div><div class="bar tall"><i style="width:${v}%;background:linear-gradient(90deg,${c}88,${c})"></i></div></div>`}).join('');
+ const net=REV()-EXP();
+ $('mon').innerHTML=[['💰','คลังหลวง',R(S.cash),'พันล้านบาท',S.cash<0?'var(--red)':'var(--gold)'],['🧾','หนี้สาธารณะ',R(S.debt),'ดอกเบี้ย '+S.dr.toFixed(1)+'%','var(--fg)'],['📈','เศรษฐกิจ GDP',R(S.G),'ดัชนี','var(--fg)'],['💳','เครดิต '+RT(),(net>=0?'+':'')+net.toFixed(1),'ดุลต่อเดือน',net>=0?'var(--jade)':'var(--red)'],['🕵️','ทุจริต',R(S.cor),'ยิ่งต่ำยิ่งดี',S.cor>60?'var(--red)':'var(--jade)'],['🚩','ตึงเครียด',R(S.en.ten),'กุมใบชา',S.en.ten>65?'var(--red)':'var(--gold)']].map(m=>`<div class="mt"><span>${m[0]} ${m[1]}</span><b style="color:${m[4]}">${m[2]}</b><small>${m[3]}</small></div>`).join('')};
+
+const FT=[['hos','โรงพยาบาลรัฐ','🏥',25,1.2,'ap',.02],['sch','โรงเรียน','🏫',15,.6,'G',.02],['uni','มหาวิทยาลัยของรัฐ','🎓',40,1.5,'G',.035],['pol','สถานีตำรวจ','🚓',15,.8,'sec',.025],['fire','สถานีดับเพลิงและกู้ภัย','🚒',15,.7,'ap',.015],['crt','ศาลจังหวัด','⚖️',30,1,'cor',-.03],['bar','ค่ายทหาร','🪖',35,1.5,'fr',.03],['pwr','โรงไฟฟ้า','⚡',45,2,'G',.04],['wtr','การประปา','💧',20,.8,'ap',.015],['air','สนามบิน','✈️',60,2.5,'cash',.5],['port','ท่าเรือ','⚓',55,2.2,'cash',.45],['hall','ที่ว่าการอำเภอ/ศาลากลาง','🏢',20,.8,'pt',.02]];
+const AGY=[['bud','สำนักงบประมาณ','📑','cash',.3,'จัดสรรงบมีประสิทธิภาพ เพิ่มคลัง'],['cgd','กรมบัญชีกลาง','🧮','cash',.3,'คุมรายจ่ายและการเบิกจ่าย'],['ocsc','สำนักงาน ก.พ.','👔','cor',-.03,'ลดทุจริตในข้าราชการ'],['nesdc','สภาพัฒน์ฯ','📊','G',.04,'วางแผนพัฒนาเศรษฐกิจ'],['pmo','สำนักนายกรัฐมนตรี','🏛️','pt',.03,'ประสานพรรคร่วมและสภา'],['nia','สำนักข่าวกรองแห่งชาติ','🕵️','sec',.03,'เสริมความมั่นคงภายใน'],['mdes','ดิจิทัลเพื่อเศรษฐกิจและสังคม','🖥️','G',.03,'รัฐบาลดิจิทัล'],['dpm','ปภ. บรรเทาสาธารณภัย','🚨','ap',.025,'ลดผลกระทบภัยพิบัติ']];
+const gvS=()=>S.gv||(S.gv={f:{},sel:25,pay:5,ag:{}});
+function ef(k,a){if(k=='cash')S.cash+=a;else if(k=='G')S.G=cl(S.G+a,40,220);else S[k]=cl(S[k]+a,0,100)}
+function gvT(){if(!S||S.over||B||window.EL)return;const g=gvS();
+ FT.forEach(t=>{const n=(g.f[t[0]]||[]).length;if(n)ef(t[5],t[6]*n)});
+ AGY.forEach(a=>{const l=g.ag[a[0]]||0;if(l)ef(a[3],a[4]*l)});
+ S.cor=cl(S.cor+(5-g.pay)*.004,0,100);S.ap=cl(S.ap+(g.pay-5)*.004,0,100)}
+const _tick=tick;tick=function(){_tick();gvT()};
+const _settle=settle;settle=function(){const g=gvS();let u=(g.pay-5)*.6;FT.forEach(t=>u+=t[4]*(g.f[t[0]]||[]).length);AGY.forEach(a=>u+=.5*(g.ag[a[0]]||0));
+ S.cash-=u;if(u>.05)S.led.unshift('🏢 ค่าดูแลหน่วยงานและสถานที่ราชการ −'+u.toFixed(1));_settle()};
+function gvSel(i){gvS().sel=i;closeM();tab('vq',document.querySelector('nav button:last-child'))}
+function gvB(id){const g=gvS(),t=FT.find(x=>x[0]==id),a=g.f[id]||(g.f[id]=[]);
+ if(a.filter(x=>x==g.sel).length>=2)return toast('จังหวัดนี้มี '+t[1]+' ครบ 2 แห่งแล้ว');
+ if(S.cash<t[3])return toast('เงินคลังไม่พอ (ต้อง '+t[3]+')');
+ S.cash-=t[3];a.push(g.sel);const p=pvS(g.sel);p.h=cl(p.h+3,0,100);snd('ok');toast(t[2]+' สร้าง'+t[1]+'ที่ '+PV[g.sel].n+' สำเร็จ');gvMap();gvH();hud()}
+function gvD(id){const g=gvS(),a=g.f[id]||[],k=a.lastIndexOf(g.sel);if(k<0)return;a.splice(k,1);S.cash+=FT.find(x=>x[0]==id)[3]*.3;S.ap=cl(S.ap-1,0,100);toast('ปิดสถานที่ราชการ (คืนเงิน 30%, ความนิยม −1)');gvMap();gvH();hud()}
+function gvA(id){const g=gvS(),l=g.ag[id]||0,c=20*(l+1);if(l>=3)return;if(S.cash<c)return toast('เงินคลังไม่พอ (ต้อง '+c+')');S.cash-=c;g.ag[id]=l+1;snd('ok');toast('ยกระดับหน่วยงาน Lv '+(l+1));gvH();hud()}
+function gvH(){if(!S)return;const g=gvS(),s=g.sel,n=id=>(g.f[id]||[]).filter(x=>x==s).length;
+ $('vq').innerHTML=`<div class="cd"><h3>🏗️ สถานที่ราชการและบริการสาธารณะ</h3><p class="hint">เลือกจังหวัดแล้วสร้างสถานที่ราชการ (ได้ประเภทละ 2 แห่งต่อจังหวัด) หรือแตะจุดจังหวัดบนแผนที่แล้วกดปุ่มสร้าง มีค่าดูแลรายรอบบัญชี</p><select class="gs" onchange="gvS().sel=+this.value;gvH()">${PV.map((p,i)=>`<option value="${i}" ${i==s?'selected':''}>${p.n}${Object.values(g.f).some(a=>a.includes(i))?' ●':''}</option>`).join('')}</select>
+ ${FT.map(t=>`<div class="ln" style="cursor:default"><span>${t[2]} ${t[1]} <small>ที่นี่ ${n(t[0])}/2 · ทั่วประเทศ ${(g.f[t[0]]||[]).length}</small><br><small>ค่าดูแล ${t[4]}/รอบ · เสริม${NAME[t[5]]||(t[5]=='G'?'GDP':'ต้านทุจริต')}</small></span><span style="display:flex;gap:6px"><button class="ch" onclick="gvB('${t[0]}')">สร้าง ${t[3]}</button>${n(t[0])?`<button class="ch" onclick="gvD('${t[0]}')">ปิด</button>`:''}</span></div>`).join('')}</div>
+ <div class="cd"><h3>📋 ความครอบคลุมบริการทั่วประเทศ</h3>${FT.map(t=>{const c=new Set(g.f[t[0]]||[]).size,v=R(c/77*100);return `<div class="cov"><span>${t[2]} ${t[1]}</span><div class="bar tall"><i style="width:${v}%;background:linear-gradient(90deg,#c9a24a88,#c9a24a)"></i></div><b>${c}/77</b></div>`}).join('')}</div>
+ <div class="cd"><h3>🏛️ การบริหารจัดการภาครัฐ</h3><div class="sec-t">กำลังคนและค่าตอบแทนข้าราชการ</div><label class="sl">ระดับเงินเดือน/สวัสดิการ<b id="gpv">${g.pay}</b><input type="range" min="1" max="10" step="1" value="${g.pay}" oninput="$('gpv').textContent=this.value" onchange="gvS().pay=+this.value;gvH();hud()"></label><p class="hint" style="margin-top:6px">สูง: ทุจริตลด ความนิยมเพิ่ม แต่รายจ่ายสูง (ฐาน 5)</p><div class="sec-t">หน่วยงานกลาง</div>${AGY.map(a=>{const l=g.ag[a[0]]||0;return `<button class="ln" onclick="gvA('${a[0]}')"><span>${a[2]} ${a[1]} <small>Lv ${l}/3</small><br><small>${a[5]} · ค่าดูแล ${.5*l}/รอบ</small></span><b style="color:var(--gold)">${l>=3?'MAX':20*(l+1)}</b></button>`}).join('')}</div>`}
+$('vg').insertAdjacentHTML('afterend','<section class="v" id="vq"></section>');
+document.querySelector('nav').insertAdjacentHTML('beforeend','<button onclick="tab(\'vq\',this)">🏢<br>ภาครัฐ</button>');
+const _rv=rv;rv=function(v){_rv(v);if(v=='vq')gvH()};
+const _pvO=pvO;pvO=function(i){_pvO(i);gvS().sel=i;$('mb').insertAdjacentHTML('afterbegin',`<button class="g" style="margin:0 0 10px" onclick="gvSel(${i})">🏗️ สร้างโรงพยาบาล/โรงเรียน/สถานีตำรวจ ที่นี่</button>`)};
+
+function gvMap(){const f=$('fac');if(!f||!S)return;const g=gvS(),by={};
+ FT.forEach(t=>(g.f[t[0]]||[]).forEach(pi=>(by[pi]=by[pi]||[]).push(t)));
+ f.innerHTML=Object.keys(by).map(pi=>{const p=PV[pi],cx=X(p.x),cy=Y(p.y);return by[pi].map((t,i)=>`<text class="a fa fa-${t[0]}" x="${cx+6+(i%3)*7}" y="${cy-5-(i/3|0)*8}" font-size="8" style="animation-delay:${i*.3}s">${t[2]}</text>`).join('')}).join('')}
+function ambH(){const mp=(ns,d,ic,fs,b)=>{ns=ns.concat(ns.slice(0,-1).reverse());const q=ns.map(ix).filter(i=>i>=0).map(i=>X(PV[i].x).toFixed(1)+','+Y(PV[i].y).toFixed(1));return `<text font-size="${fs}" class="ambt"><animateMotion dur="${d}s" begin="-${b||0}s" repeatCount="indefinite" path="M${q.join(' L')}"/>${ic}</text>`};
+ const cl2=(y1,y2,d,b,s)=>`<text font-size="${s}" opacity=".45" class="ambt"><animateMotion dur="${d}s" begin="-${b}s" repeatCount="indefinite" path="M-40,${y1} L490,${y2}"/>☁️</text>`;
+ return mp(['นครสวรรณ์','ชัยนาถ','สิงห์บูรี','อ่างทอน','พระนครศรีอยุธะยา','ปทุมธาณี','นนทบูรี','กรุงเทบ','สมุทรปาการ'],40,'⛴️',12)+mp(['กรุงเทบ','พระนครศรีอยุธะยา','ลพบูรี','นครสวรรณ์','พิจิตต','พิษณุโลง','แพร้','ลำภาง','เชียงมะ'],70,'🚆',12)+mp(['กรุงเทบ','เพชรบูรี','ประจวบคีรีขัน','ชุมพน','สุราษฎร์ธาณี','ตะรัง','สงขลี'],80,'🚆',12)+mp(['กรุงเทบ','เชียงมะ'],26,'✈️',13)+mp(['กรุงเทบ','ภูเก็จ'],30,'✈️',13)+mp(['กรุงเทบ','ขอนแก้น','อุดรธาณี'],34,'✈️',12)+mp(['กรุงเทบ','นครราชสีนา','ขอนแก้น','อุดรธาณี'],55,'🚚',11)+mp(['กรุงเทบ','ชลบูรี','ระยอน'],35,'🚢',12)+mp(['กรุงเทบ','กาญจนบูรี'],30,'🚚',11)+cl2(70,110,80,0,26)+cl2(420,380,110,40,30)+cl2(600,640,95,20,24)}
+const _bm=buildMap;buildMap=function(){_bm();$('mk').insertAdjacentHTML('beforebegin','<g id="amb" pointer-events="none">'+ambH()+'</g><g id="fac" pointer-events="none"></g>');gvMap()};
+const _dm=drawMk;drawMk=function(){_dm();gvMap()};
+fit();
 </script>
 </body></html>
