@@ -1091,5 +1091,27 @@ function xsH(){if(!S)return;const d=XS[xsI],m=xs(d.id);
 $('vg').insertAdjacentHTML('afterend','<section class="v" id="vy"></section>');
 document.querySelector('nav').insertAdjacentHTML('beforeend','<button onclick="tab(\'vy\',this)">🧩<br>ระบบ+</button>');
 const _rv6=rv;rv=function(v){_rv6(v);if(v=='vy')xsH()};
+ /* ===== PATCH v6: เครดิตผู้พัฒนา ===== */
+const DEV_NAME='ผู้พัฒนาเกม';            /* ← แก้ชื่อผู้พัฒนาตรงนี้ */
+const DEV_URL='https://www.facebook.com/share/1DeWtKj5C5/';
+const DEV_ROLE='ออกแบบและพัฒนาเกม';
+document.head.insertAdjacentHTML('beforeend',`<style>
+.crd{position:relative;margin-top:14px;padding:14px 12px 12px;border-radius:14px;text-align:center;background:linear-gradient(160deg,#1a2540,#101a2e);border:1px solid var(--gold);overflow:hidden}
+.crd::before{content:'';position:absolute;inset:0;background:linear-gradient(115deg,transparent 40%,#c9a24a33 50%,transparent 60%);transform:translateX(-100%);animation:shn 4s infinite}
+@keyframes shn{60%,100%{transform:translateX(100%)}}
+.crd .cl{font:600 10px Prompt,sans-serif;letter-spacing:2px;color:var(--gold)}
+.crd .cn{font:700 18px Prompt,sans-serif;margin:4px 0 2px;color:var(--fg)}
+.crd .cr2{font-size:12px;color:var(--mut)}
+.crd .orn{color:var(--gold);letter-spacing:6px;font-size:11px;margin:4px 0}
+.crd a{position:relative;display:inline-flex;align-items:center;gap:6px;margin-top:8px;padding:8px 16px;border-radius:24px;background:linear-gradient(135deg,#d6b566,#b28a34);color:#1b1406;font:700 13px Prompt,sans-serif;text-decoration:none}
+.crd a:active{transform:scale(.97)}
+.crd.sm{margin-top:12px;padding:8px}.crd.sm .cn{font-size:14px}
+#crb{position:fixed;right:10px;bottom:206px;z-index:7;background:var(--pan);color:var(--fg);border:1px solid var(--ln);border-radius:10px;padding:6px 9px;font-size:13px;cursor:pointer}
+</style>`);
+const credH=(sm)=>`<div class="crd${sm?' sm':''}"><div class="cl">✦ CREDIT ✦</div><div class="cn">${esc(DEV_NAME)}</div><div class="cr2">${DEV_ROLE}</div>${sm?'':'<div class="orn">◆ ◆ ◆</div>'}<a href="${DEV_URL}" target="_blank" rel="noopener noreferrer">📘 ติดตามผู้พัฒนาบน Facebook</a></div>`;
+$('st').querySelector('.box').insertAdjacentHTML('beforeend',credH());
+$('en').querySelector('.box').insertAdjacentHTML('beforeend',credH(1));
+function cred(){$('mb').innerHTML=`<h3>🏛️ จำลองนายกรัฐมนตรี</h3><p class="hint">เกมจำลองการบริหารประเทศ 77 จังหวัด</p>${credH()}<button class="o" style="text-align:center;color:var(--mut);margin-top:12px" onclick="closeM()">ปิด</button>`;$('md').classList.add('on')}
+(function(){const b=document.createElement('button');b.id='crb';b.textContent='ℹ️ เครดิต';b.onclick=cred;document.body.appendChild(b)})();
 </script>
 </body></html>
